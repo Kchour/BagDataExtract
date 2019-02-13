@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# THIS SCRIPT WILL BE USED TO DETERMINE Q, R NOISE COVARIANCE MATRICES
 #  and to parse bag files
 import csv
 import rosbag
@@ -24,7 +23,7 @@ rtkx = np.asarray(rtkx)
 rtky = np.asarray(rtky)
 bag.close()
 
-pdb.set_trace()
+#pdb.set_trace()	#for debugging purposes, acts like a breakpoint
 #### Write to file
 print "Writing to file, please wait"
 filename = "coords.dat"
