@@ -12,7 +12,7 @@ This script is used to extract data from bag files. See other repo to extract vi
 	1. Edit the desired topic names and field names/variables as desired
 	1. output will be text files easily importable to octave/matlab
 ## Miscellaneous info
-1, To get a list of topics for a rosbag
+1. To get a list of topics for a rosbag
 	1. rosbag info bagfilename.bag
 1. To play rosbag paused
 	1. rosbag play bagfilename.bag --pause
