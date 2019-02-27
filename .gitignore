@@ -1,0 +1,15 @@
+*.swp
+*.swo
+*.pyc
+*~
+*.user
+.DS_Store
+.cproject
+.project
+.settings
+catkin_ws/devel/*
+catkin_ws/build/*
+catkin_ws/logs/*
+catkin_ws/.catkin_tools/*
+*.bag
+*.txt
