@@ -12,4 +12,3 @@ catkin_ws/build/*
 catkin_ws/logs/*
 catkin_ws/.catkin_tools/*
 *.bag
-*.txt
