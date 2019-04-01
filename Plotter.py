@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 import utm
 import pdb
 
-folder = '2019-03-30-17-13-32'
+folder = '2019-03-30-17-18-48'
 lat_file = '_mti_filter_position_msg.latitude.txt'
 long_file = '_mti_filter_position_msg.longitude.txt'
 velx_file = '_vehicle_twist_msg.twist.linear.x.txt'
@@ -39,12 +39,12 @@ xdata, ydata = [], []
 ln, = plt.plot([], [])
 
 def init():
-
+    plt.scatter(0,0)
     ax.set_xlim(1.12*(min(utmx)-utmx[0]),1.12*(max(utmx)-utmx[0]))
     ax.set_ylim(1.12*(min(utmy)-utmy[0]),1.12*(max(utmy)-utmy[0]))
     plt.xlabel('EASTING [m]')
     plt.ylabel('NORTHING [m]')
-    plt.title('POSITION')
+    plt.title('POSITION: Trial 2')
     return ln,
 
 def update(frame):
@@ -54,6 +54,9 @@ def update(frame):
     return ln,
 
 ani = FuncAnimation(fig, update, frames=np.linspace(0, len(utmx)-1, 200),
-                    init_func=init, blit=True, interval=50,repeat=False)
+                    init_func=init, blit=True, interval=1,repeat=False)
+#ani.save('MovWave.avi', writer="ffmpeg")
+
 plt.show()
+
 
