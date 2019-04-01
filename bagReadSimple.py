@@ -7,16 +7,18 @@ import numpy as np
 import pdb
 
 import os
-
-
-
+import matplotlib.pyplot as plt
 
 
 
 #### Specify desired topics, field variables
-desiredTopics = ['/gps/rtkfix',
+#desiredTopics = ['/mti/filter/positionEstimate',
+#	         '/vehicle/twist']
+#desiredFields = [['msg.pose.pose.position.x','msg.pose.pose.position.y'],
+#		 ['msg.twist.linear.x','msg.twist.angular.z']]
+desiredTopics = ['/mti/filter/position',
 	         '/vehicle/twist']
-desiredFields = [['msg.pose.pose.position.x','msg.pose.pose.position.y'],
+desiredFields = [['msg.longitude','msg.latitude'],
 		 ['msg.twist.linear.x','msg.twist.angular.z']]
 
 print "Desired Topics: ",desiredTopics
@@ -29,8 +31,12 @@ print "Desired Fields: ",desiredFields
 #        print(os.path.join("/mydir", file))
 #	bag_file.append(os.path.join(file))
 
+
+
 #### bag file handle
-bag = rosbag.Bag('test1_2019-02-06-11-02-14.bag')
+# NAME OF FOLDER AND BAG FILE MUST BE THE SAME
+folder = '2019-03-30-17-18-48'
+bag = rosbag.Bag('./'+folder+'/'+folder+'.bag')
 StartTime = bag.get_start_time()
 
 
@@ -55,8 +61,6 @@ for topic, msg, t in bag.read_messages(topics=desiredTopics):
 					else: 
 						lists[k].append([t.to_sec()-StartTime,eval(desiredFields[i][j])])
 
-
-#pdb.set_trace() 
 lists = np.asarray(lists)
 bag.close()
 
@@ -70,13 +74,16 @@ bag.close()
 #fopen.close()
 #print "DONE"
 
+
+
+
 cnt= 0
 # Make sure it's not empty
 print "SAVING DATA, PLEASE WAIT"
 for i in range(len(lists)):
 	if len(lists[i]) > 0:
 		print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
-		np.savetxt(lists[i][0][1].replace("/","_")+".txt",lists[i],delimiter=',',fmt="%s")
+		np.savetxt(folder+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%s")
 		cnt += 1
 
 print "SAVED ",cnt," Files"
