@@ -35,7 +35,8 @@ for i in range(len(lat_data)):
 
 fig, ax = plt.subplots()
 xdata, ydata = [], []
-ln, = plt.plot([], [], 'ro')
+#ln, = plt.plot([], [], 'ro')
+ln, = plt.plot([], [])
 
 def init():
 
@@ -43,6 +44,7 @@ def init():
     ax.set_ylim(1.12*(min(utmy)-utmy[0]),1.12*(max(utmy)-utmy[0]))
     plt.xlabel('EASTING [m]')
     plt.ylabel('NORTHING [m]')
+    plt.title('POSITION')
     return ln,
 
 def update(frame):
@@ -52,6 +54,6 @@ def update(frame):
     return ln,
 
 ani = FuncAnimation(fig, update, frames=np.linspace(0, len(utmx)-1, 200),
-                    init_func=init, blit=True, interval=50)
+                    init_func=init, blit=True, interval=50,repeat=False)
 plt.show()
 
