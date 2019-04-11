@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 import utm
 import pdb
 
-folder = '2019-03-30-17-18-48'
+folder = '2019-03-30-16-47-29'
 lat_file = '_mti_filter_position_msg.latitude.txt'
 long_file = '_mti_filter_position_msg.longitude.txt'
 velx_file = '_vehicle_twist_msg.twist.linear.x.txt'

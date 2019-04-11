@@ -37,7 +37,7 @@ print "Desired Fields: ",desiredFields
 
 #### bag file handle
 # NAME OF FOLDER AND BAG FILE MUST BE THE SAME
-folder = '2019-03-30-17-18-48'
+folder = '2019-03-30-17-18-02'
 bag = rosbag.Bag('./'+folder+'/'+folder+'.bag')
 StartTime = bag.get_start_time()
 
