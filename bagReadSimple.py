@@ -17,9 +17,11 @@ import matplotlib.pyplot as plt
 #desiredFields = [['msg.pose.pose.position.x','msg.pose.pose.position.y'],
 #		 ['msg.twist.linear.x','msg.twist.angular.z']]
 desiredTopics = ['/mti/filter/position',
-	         '/vehicle/twist']
+	         '/vehicle/twist',
+		 '/vehicle/steering_report']
 desiredFields = [['msg.longitude','msg.latitude'],
-		 ['msg.twist.linear.x','msg.twist.angular.z']]
+		 ['msg.twist.linear.x','msg.twist.angular.z'],
+		 ['msg.steering_wheel_angle_cmd','msg.steering_wheel_angle']]
 
 print "Desired Topics: ",desiredTopics
 print "Desired Fields: ",desiredFields
