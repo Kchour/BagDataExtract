@@ -22,3 +22,8 @@ This script is used to extract data from bag files. See other repo to extract vi
 	1. rostopic list |grep robot |xargs -n 1 rostopic type
 1. Get information regarding each message field variables
 	1. rostopic list | xargs -n 1 rostopic type | xargs -n 1 rosmsg show >> msginfo.txt
+
+## Sample bag data
+* 2019-03-30-16-47-29: Constant circle
+* 2019-03-30-17-13-32: 2 circles then attack
+* 2019-03-30-17-18-48: 2 circles then attack
