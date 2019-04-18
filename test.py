@@ -38,10 +38,14 @@ def storeProccessed(listdir_,ndx):
 	return name_,data_
 
 
-def plotProccessed(name_,data_,listdir_title,ndx):
+def plotProccessed(name_,data_,listdir_title,ndx,xlabel = "default",ylabel="default"):
 	#### PLOT PROCESSED DATA
 	# "* is the clipboard register
-	p = figure(title=listdir_title, x_axis_label="time", y_axis_label=name_[ndx])
+	if ylabel == "default":
+		ylabel = name_[ndx]
+	if xlabel == "default":
+		xlabel = "time"
+	p = figure(title=listdir_title, x_axis_label=xlabel, y_axis_label=ylabel)
 	p.line(data_[ndx][:,0], data_[ndx][:,1],legend="temp",line_width=2)
 	show(p)
 	#test = np.genfromtxt(listdir_[1]+"complete.txt",dtype="object")
