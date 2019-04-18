@@ -50,18 +50,29 @@ def plotProccessed(name_,data_,listdir_title,ndx,xlabel = "default",ylabel="defa
 	show(p)
 	#test = np.genfromtxt(listdir_[1]+"complete.txt",dtype="object")
 
+def is_number(s):
+	try:
+		int(s)
+		return True
+	except:
+		return False
+
 while True:
 	ndx1 = raw_input("ENTER DIRECTORY NUMBER TO PROCESS: ")
-	print '\n'
-	while True:
-		name_,data_ = storeProccessed(listdir_,int(ndx1)-1)
-		ndx2 = raw_input("ENTER INSTANCE TO PLOT, a=ALL, or b=BACK: ")
+	if is_number(ndx1):
 		print '\n'
-		if ndx2 == 'a' or ndx2 == "ALL":
-			print "WIP"
-		elif ndx2 ==' b' or ndx2 == "BACK":
-			print "BACK"
-			break
-		elif isinstance(int(ndx2), int):
-			plotProccessed(name_,data_,listdir_[int(ndx1)-1],int(ndx2)-1)
-
+		while True:
+			name_,data_ = storeProccessed(listdir_,int(ndx1)-1)
+			ndx2 = raw_input("ENTER INSTANCE TO PLOT, a=ALL, or b=BACK: ")
+			print '\n'
+			if ndx2 == 'a' or ndx2 == "ALL":
+				print "WIP"
+			elif ndx2 =='b' or ndx2 == "BACK":
+				print "BACK"
+				break
+			elif is_number(ndx2):
+				plotProccessed(name_,data_,listdir_[int(ndx1)-1],int(ndx2)-1)
+			elif not is_number(ndx2):
+				print "ENTER A NUMBER FROM ABOVE PLEASE"
+	else:	
+		print "GIVE A INTEGER NUMBER ABOVE PLEASE"
