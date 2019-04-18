@@ -3,11 +3,11 @@ This script is used to extract data from bag files. It will automatically look f
 
 ## Instructions
 1. Download / clone this repository branch (plotting)
+1. Delete all prior folders 
 1. Place all bag files in the same directory as scripts
 1. Modify bagReadsimple script to include your desired topics, field variables
 1. Run the script by issuing "python bagReadSimple.py"
 1. Results will be generated in the folders
-
 
 ## Miscellaneous info
 1. To get a list of topics for a rosbag
