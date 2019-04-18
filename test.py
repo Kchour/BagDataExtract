@@ -38,23 +38,26 @@ def storeProccessed(listdir_,ndx):
 	return name_,data_
 
 
-def plotProccessed(name_,data_,ndx):
+def plotProccessed(name_,data_,listdir_title,ndx):
 	#### PLOT PROCESSED DATA
 	# "* is the clipboard register
-	p = figure(title=name_[ndx], x_axis_label="time", y_axis_label=name_[ndx])
+	p = figure(title=listdir_title, x_axis_label="time", y_axis_label=name_[ndx])
 	p.line(data_[ndx][:,0], data_[ndx][:,1],legend="temp",line_width=2)
 	show(p)
 	#test = np.genfromtxt(listdir_[1]+"complete.txt",dtype="object")
 
 while True:
-	ndx = int(raw_input("ENTER DIRECTORY NUMBER TO PROCESS: "))
+	ndx1 = raw_input("ENTER DIRECTORY NUMBER TO PROCESS: ")
 	print '\n'
-	name_,data_ = storeProccessed(listdir_,ndx-1)
-	ndx = raw_input("ENTER INSTANCE TO PLOT, a=ALL, or b=BACK: ")
-	if ndx == 'a' or ndx == "ALL":
-		print "WIP"
-	elif ndx ==' b' or ndx == "BACK":
-		print "BACK"
-	elif isinstance(int(ndx), int):
-		plotProccessed(name_,data_,int(ndx)-1)
+	while True:
+		name_,data_ = storeProccessed(listdir_,int(ndx1)-1)
+		ndx2 = raw_input("ENTER INSTANCE TO PLOT, a=ALL, or b=BACK: ")
+		print '\n'
+		if ndx2 == 'a' or ndx2 == "ALL":
+			print "WIP"
+		elif ndx2 ==' b' or ndx2 == "BACK":
+			print "BACK"
+			break
+		elif isinstance(int(ndx2), int):
+			plotProccessed(name_,data_,listdir_[int(ndx1)-1],int(ndx2)-1)
 

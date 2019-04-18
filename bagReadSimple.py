@@ -11,18 +11,19 @@ from os import listdir
 
 import matplotlib.pyplot as plt
 
-
 #### SPECIFY DISIRED TOPICS AND FIELDS  ####
 desiredTopics = ['/pacmod/as_rx/accel_cmd',
 	         '/pacmod/as_rx/brake_cmd',
 		 '/pacmod/as_rx/steer_cmd',
                  '/pacmod/as_rx/enable',
-                 '/pacmod/as_tx/vehicle_speed']
+                 '/pacmod/as_tx/vehicle_speed',
+		 '/game_control/joy']
 desiredFields = [['msg.command','msg.enable'],
 		 ['msg.command','msg.enable'],
 		 ['msg.command','msg.enable'],
                  ['msg.data'],
-                 ['msg.data']]
+                 ['msg.data'],
+		 ['msg.buttons[0]']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
