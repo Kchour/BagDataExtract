@@ -1,12 +1,14 @@
 # BagDataExtract
-This script is used to extract data from bag files. See other repo to extract video data
+This script is used to extract data from bag files. It will automatically look for bag files in the directory as the bagReadSimple.py and turn data into text files. You can specify the topics, field variables to filter through in the script
 
 ## Instructions
 1. Download / clone this repository branch (plotting)
-1. Place all bag files in a separate folder which has the same name (minus the extension i.e "bag123.bag" should be in folder "bag123")
-1. Modify bagReadsimple script to include your desired topics, field variables, and bagfile name
+1. Place all bag files in the same directory as scripts
+1. Modify bagReadsimple script to include your desired topics, field variables
 1. Run the script by issuing "python bagReadSimple.py"
-1. Resulting results will be generated in the folders
+1. Results will be generated in the folders
+
+
 ## Miscellaneous info
 1. To get a list of topics for a rosbag
 	1. rosbag info bagfilename.bag
@@ -19,7 +21,3 @@ This script is used to extract data from bag files. See other repo to extract vi
 1. Get information regarding each message field variables
 	1. rostopic list | xargs -n 1 rostopic type | xargs -n 1 rosmsg show >> msginfo.txt
 
-## Sample bag data
-* 2019-03-30-16-47-29: Constant circle
-* 2019-03-30-17-13-32: 2 circles then attack
-* 2019-03-30-17-18-48: 2 circles then attack
