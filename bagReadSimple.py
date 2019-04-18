@@ -64,7 +64,7 @@ def saveProcessed(lists,f):
                             os.makedirs('./'+f.replace('-','_')[0:-4])
                         np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%s")
 			cnt += 1
-
+	np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
 	print "SAVED ",cnt," Files"
 
 def main(): 
