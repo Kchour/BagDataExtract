@@ -2,7 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import utm
+from os import listdir
 import pdb
+
+for f in listdir
 
 folder = '2019-03-30-16-47-29'
 lat_file = '_mti_filter_position_msg.latitude.txt'

@@ -62,9 +62,10 @@ def saveProcessed(lists,f):
                         print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
                         if not os.path.exists('./'+f.replace('-','_')[0:-4]):
                             os.makedirs('./'+f.replace('-','_')[0:-4])
-                        np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%s")
+                        np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%f")
 			cnt += 1
-	np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
+	np.savetxt('./'+f.replace('-','_')[0:-4]+'/processed.processed',[])
+	#np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
 	print "SAVED ",cnt," Files"
 
 def main(): 
