@@ -2,7 +2,7 @@ import rosbag
 import pdb
 bag = rosbag.Bag('throttle_050_2019-04-17-11-18-33.bag')
 types = []
-
+topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()
 #### GET A LIST OF TOPICS AND TYPES
 for i in range(0,len(bag.get_type_and_topic_info()[1].values())):
@@ -11,15 +11,28 @@ for i in range(0,len(bag.get_type_and_topic_info()[1].values())):
 msg_fields = []
 cnt = 1
 for i in range(len(types)):
-	for topic, msg, t in bag.read_messages(topics=types[i]):
-		if topic == types[i]:
+	for topic, msg, t in bag.read_messages(topics=topics_):
+		if topic == topics_[i]:
 			msg_fields.append(msg)	
-			print cnt
+			print cnt, topic
 			cnt += 1		
 			break	
-			
-
+	
+def is_number(s):
+	try:
+		int(s)
+		return True
+	except:
+		return False
+		
 while True:
-	ndx = int(raw_input("PICK A TOPIC NUMBER: "))
-	print types[ndx-1], msg_fields[ndx-1]
-	print "\n"	
+	ndx = raw_input("PICK A TOPIC NUMBER: ")
+	if ndx == 'L' or ndx == "LIST":
+		for i in range(len(topics_)):
+			print i+1, topics_[i]
+	elif is_number(ndx):	
+		ndx = int(ndx)
+		print "TOPIC: ",topics_[ndx-1],"\n","TYPE: ",types[ndx-1],"\n","MSG: ","\n\n", msg_fields[ndx-1]
+		print "\n"	
+	
+			
