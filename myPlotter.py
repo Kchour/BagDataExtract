@@ -24,7 +24,7 @@ for root, directories, filenames in os.walk('./'):
 			cnt+=1
 
 def storeProccessed(listdir_,ndx):
-#### STORE PROCESSED DATA
+#### STORE PROCESSED DATA, USE ndx to indicate the directory
 	data_ = []
 	name_ = []
 	cnt = 1
@@ -44,6 +44,7 @@ def returnPltPos(name_,desired):
 			return i
 
 
+#### FOR loop to look through each folder on the list
 for i in range(len(listdir_)):
 	
 	name_,data_ = storeProccessed(listdir_,i)
@@ -54,8 +55,7 @@ for i in range(len(listdir_)):
 	result2_ndx = returnPltPos(name_,"_result_t2_msg.data")
 
 	try:	
-		output_file(listdir_[i]+".html")
-		pdb.set_trace()
+		output_file(listdir_[i][2:-1]+".html")
 		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
 		p1.line(data_[long_ndx][:,1], data_[lat_ndx][:,1],legend="Path",line_width=2)
 
