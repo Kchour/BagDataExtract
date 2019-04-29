@@ -2,12 +2,12 @@ from os import listdir
 from os.path import isfile
 import os
 import pdb
-import numpy as np
+import traceback
 from bokeh.io import show
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, RangeTool
-from bokeh.plotting import figure
-
+from bokeh.plotting import figure, gridplot, output_file
+import numpy as np
 
 # GRAB DIRECTORIES WITH processed.processed
 listdir_ = []
@@ -30,49 +30,43 @@ def storeProccessed(listdir_,ndx):
 	cnt = 1
 	for f in listdir(listdir_[ndx]):
 		if f.endswith('.txt'):
-			print cnt, f
-			txtread = np.genfromtxt(listdir_[0]+f,delimiter=',',dtype='float')
+			#print cnt, f
+			txtread = np.genfromtxt(listdir_[ndx]+f,delimiter=',',dtype='float')
 			name_.append(f[0:-4])
 			data_.append(txtread)
 			cnt+=1
 	return name_,data_
 
 
-def plotProccessed(name_,data_,listdir_title,ndx,xlabel = "default",ylabel="default"):
-	#### PLOT PROCESSED DATA
-	# "* is the clipboard register
-	if ylabel == "default":
-		ylabel = name_[ndx]
-	if xlabel == "default":
-		xlabel = "time"
-	p = figure(title=listdir_title, x_axis_label=xlabel, y_axis_label=ylabel)
-	p.line(data_[ndx][:,0], data_[ndx][:,1],legend="temp",line_width=2)
-	show(p)
-	#test = np.genfromtxt(listdir_[1]+"complete.txt",dtype="object")
+def returnPltPos(name_,desired):
+	for i in range(len(name_)):
+		if name_[i] == desired:
+			return i
 
-def is_number(s):
-	try:
-		int(s)
-		return True
-	except:
-		return False
 
-while True:
-	ndx1 = raw_input("ENTER DIRECTORY NUMBER TO PROCESS: ")
-	if is_number(ndx1):
-		print '\n'
-		while True:
-			name_,data_ = storeProccessed(listdir_,int(ndx1)-1)
-			ndx2 = raw_input("ENTER INSTANCE TO PLOT, a=ALL, or b=BACK: ")
-			print '\n'
-			if ndx2 == 'a' or ndx2 == "ALL":
-				print "WIP"
-			elif ndx2 =='b' or ndx2 == "BACK":
-				print "BACK"
-				break
-			elif is_number(ndx2):
-				plotProccessed(name_,data_,listdir_[int(ndx1)-1],int(ndx2)-1)
-			elif not is_number(ndx2):
-				print "ENTER A NUMBER FROM ABOVE PLEASE"
-	else:	
-		print "GIVE A INTEGER NUMBER ABOVE PLEASE"
+for i in range(len(listdir_)):
+	
+	name_,data_ = storeProccessed(listdir_,i)
+	lat_ndx = returnPltPos(name_,"_mti_filter_position_msg.latitude")
+	long_ndx = returnPltPos(name_,"_mti_filter_position_msg.longitude")
+	fakeyaw_ndx = returnPltPos(name_,"_vehicle_twistfake_msg.twist.angular.z")
+	result1_ndx = returnPltPos(name_,"_result_t1_msg.data")
+	result2_ndx = returnPltPos(name_,"_result_t2_msg.data")
+
+	try:	
+		output_file(listdir_[i]+".html")
+		pdb.set_trace()
+		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
+		p1.line(data_[long_ndx][:,1], data_[lat_ndx][:,1],legend="Path",line_width=2)
+
+		p2 = figure(title=listdir_[i], x_axis_label='time')
+		p2.line(data_[result1_ndx][:,0], data_[result1_ndx][:,1], legend="Result1",line_width=2, line_color="red")
+		p2.line(data_[result2_ndx][:,0], data_[result2_ndx][:,1], legend="Result2",line_width=2, line_color="blue")
+		p2.line(data_[fakeyaw_ndx][:,0], data_[fakeyaw_ndx][:,1], legend="fakeyaw",line_width=2, line_color="green")
+		curr = gridplot([[p1, p2]])
+		show(curr)
+	except Exception:
+		print i, listdir_[i], traceback.format_exc()		
+		pass
+
+	

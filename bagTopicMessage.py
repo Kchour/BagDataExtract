@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('throttle_050_2019-04-17-11-18-33.bag')
+bag = rosbag.Bag('2019-04-26-18-38-36.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()

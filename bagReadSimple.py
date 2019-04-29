@@ -12,18 +12,16 @@ from os import listdir
 import matplotlib.pyplot as plt
 
 #### SPECIFY DISIRED TOPICS AND FIELDS  ####
-desiredTopics = ['/pacmod/as_rx/accel_cmd',
-	         '/pacmod/as_rx/brake_cmd',
-		 '/pacmod/as_rx/steer_cmd',
-                 '/pacmod/as_rx/enable',
-                 '/pacmod/as_tx/vehicle_speed',
-		 '/game_control/joy']
-desiredFields = [['msg.command','msg.enable'],
-		 ['msg.command','msg.enable'],
-		 ['msg.command','msg.enable'],
+desiredTopics = ['/mti/filter/position',
+	         '/vehicle/twistfake',
+		 '/vehicle/twist',
+                 '/result_t1',
+                 '/result_t2']
+desiredFields = [['msg.latitude','msg.longitude'],
+		 ['msg.twist.angular.z','msg.twist.linear.x'],
+		 ['msg.twist.angular.z','msg.twist.linear.x'],
                  ['msg.data'],
-                 ['msg.data'],
-		 ['msg.buttons[0]']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.data']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
@@ -52,7 +50,7 @@ def readMessages(desiredTopics, desiredFields, bag):
 
 	lists_ = np.asarray(lists_)
 	return lists_
-
+	
 
 def saveProcessed(lists,f):
         cnt= 0
