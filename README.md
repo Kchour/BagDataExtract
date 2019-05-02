@@ -6,7 +6,7 @@ This script is used to extract data from bag files. It will automatically look f
 1. Delete all prior folders 
 1. Place all bag files in the same directory as scripts
 1. Modify "bagReadSimple.py" script to include your desired topics, field variables (see example below)
-	1. To see topics and corresponding message structure, run "bagTopicMessage.py" 
+	1. To see topics and corresponding message structure, modify and run "bagTopicMessage.py" 
 1. Run the script by issuing "python bagReadSimple.py"
 1. Results will be generated in the folders
 
