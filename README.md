@@ -31,6 +31,7 @@ This script is used to extract data from bag files. It will automatically look f
 
 ## Some Examples
 1. In bagReadSimple.py, modify the desiredTopics and desiredFields as needed, i.e.
+
 '''
 desiredTopics = ['/pacmod/as_rx/accel_cmd',
 	         '/pacmod/as_rx/brake_cmd',
