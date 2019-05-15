@@ -11,16 +11,10 @@ from os import listdir
 import matplotlib.pyplot as plt
 
 #### SPECIFY DISIRED TOPICS AND FIELDS  ####
-desiredTopics = ['/mti/filter/position',
-	         '/vehicle/twistfake',
-		 '/vehicle/twist',
-                 '/result_t1',
-                 '/result_t2']
-desiredFields = [['msg.latitude','msg.longitude'],
-		 ['msg.twist.angular.z','msg.twist.linear.x'],
-		 ['msg.twist.angular.z','msg.twist.linear.x'],
-                 ['msg.data'],
-                 ['msg.data']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+desiredTopics = ['/pacmod/as_tx/vehicle_speed',
+                 '/pacmod/as_rx/accel_cmd']
+desiredFields = [['msg.data'],
+                 ['msg.command']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
@@ -54,17 +48,21 @@ def readMessages(desiredTopics, desiredFields, bag):
 def saveProcessed(lists,f):
         cnt= 0
 	# Make sure it's not empty
-	print "SAVING DATA, PLEASE WAIT"
-	for i in range(len(lists)):
-		if len(lists[i]) > 0:
-                        print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
-                        if not os.path.exists('./'+f.replace('-','_')[0:-4]):
-                            os.makedirs('./'+f.replace('-','_')[0:-4])
-                        np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%f")
-			cnt += 1
-	np.savetxt('./'+f.replace('-','_')[0:-4]+'/processed.processed',[])
-	#np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
-	print "SAVED ",cnt," Files"
+        try:
+                for i in range(len(lists)):
+                        print "SAVING DATA, PLEASE WAIT"
+                        if len(lists[i]) > 0:
+                                print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
+                                if not os.path.exists('./'+f.replace('-','_')[0:-4]):
+                                        os.makedirs('./'+f.replace('-','_')[0:-4])
+                                np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%f")
+                                cnt += 1
+                np.savetxt('./'+f.replace('-','_')[0:-4]+'/processed.processed',[])
+                #np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
+                print "SAVED ",cnt," Files"
+        except Exception as e:
+                print e, "CHECK THE DESIRED TOPICS AND FIELDS AGAIN"
+                pass
 
 def main(): 
     """ To get a list of bag files in the directory """
