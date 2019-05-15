@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+rostopic pub -r 30 /pacmod/as_rx/steer_cmd pacmod_msgs/SteerSystemCmd "header:
+  seq: 0
+  stamp: {secs: 0, nsecs: 0}
+  frame_id: ''
+enable: true
+ignore_overrides: false
+clear_override: false
+clear_faults: false
+command: 0.0
+rotation_rate: 1.0" 

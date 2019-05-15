@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('no_attacku_2019-04-26-18-45-19.bag')
+bag = rosbag.Bag('speed6_test1_2019-05-14-16-20-22.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()

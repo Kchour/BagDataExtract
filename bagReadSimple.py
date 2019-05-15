@@ -11,16 +11,28 @@ from os import listdir
 import matplotlib.pyplot as plt
 
 #### SPECIFY DISIRED TOPICS AND FIELDS  ####
-desiredTopics = ['/mti/filter/position',
-	         '/vehicle/twistfake',
-		 '/vehicle/twist',
-                 '/result_t1',
-                 '/result_t2']
+desiredTopics = ['/vectornav/fix',
+	         '/as_tx/vehicle_speed',
+		 '/vectornav/velTEST',
+                 '/vehicle/odom2',
+                 '/vehicle/odom1',
+                 '/vectornav/gps',
+                 '/as_rx/brake_cmd',
+                 '/as_rx/steer_cmd',
+                 '/as_rx/accel_cmd',
+                 '/vectornav/ins',
+                 '/vectornav/imu']
 desiredFields = [['msg.latitude','msg.longitude'],
-		 ['msg.twist.angular.z','msg.twist.linear.x'],
-		 ['msg.twist.angular.z','msg.twist.linear.x'],
                  ['msg.data'],
-                 ['msg.data']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.data'],
+		 ['msg.x','msg.y','msg.yaw'],                   # Need to check odom2 
+		 ['msg.twist.twist.angular.z'],                 # Need to check odom1
+                 ['msg.LLA.x', 'msg.LLA.y'],
+                 ['msg.command'],                               # Need to check brake_cms
+                 ['msg.command'],
+                 ['msg.command'],
+                 ['msg.LLA.x', 'msg.LLA.y'],
+                 ['msg.Gyro.x', 'msg.Gyro.y', 'msg.Gyro.z']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
