@@ -70,8 +70,8 @@ for i in range(len(listdir_)):
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
 		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
-		p1.line(data_[long_ndx][:,1], data_[lat_ndx][:,1],legend="Path Driven",line_width=2, line_color="red")
-		p1.line(waypoints_data[:,0], waypoints_data[:,1],legend="Waypoints",line_width=2, line_color="blue")
+		p1.line(data_[long_ndx][:,1]- waypoints_data[0,0], data_[lat_ndx][:,1] - waypoints_data[0,1],legend="Path Driven",line_width=2, line_color="red")
+		p1.line(waypoints_data[:,0] - waypoints_data[0,0], waypoints_data[:,1] - waypoints_data[0,1] ,legend="Waypoints",line_width=2, line_color="blue")
 
 		p2 = figure(title=listdir_[i], x_axis_label='time')
 		p2.line(data_[vehicle_speed_ndx][:,0], data_[vehicle_speed_ndx][:,1], legend="PACMod Speed",line_width=2, line_color="red")
