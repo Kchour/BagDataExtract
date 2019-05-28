@@ -10,11 +10,15 @@ import os
 from os import listdir
 import matplotlib.pyplot as plt
 
-#### SPECIFY DISIRED TOPICS AND FIELDS  ####
-desiredTopics = ['/pacmod/as_tx/vehicle_speed',
-                 '/pacmod/as_rx/accel_cmd']
+#### SPECIFY DESIRED TOPICS AND FIELDS  ####
+desiredTopics = ['/result_t1',
+                 '/result_t2',
+		 '/vehicle/twistfake',
+		 '/vehicle/dbw_enabled']
 desiredFields = [['msg.data'],
-                 ['msg.command']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.data'],
+		 ['msg.twist.angular.z'],
+		 ['msg.data']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
@@ -23,7 +27,7 @@ def readMessages(desiredTopics, desiredFields, bag):
 	desiredFields_ = [y for x in desiredFields for y in x]
 	n1 = len(desiredTopics)
 	n2 = len(desiredFields_)
-	lists_ = [[] for _ in range(n2)]
+	lists_ = [[] for _ in range(n2)]	#based on number of desiredFields
 	#### GET TIME
 	StartTime = bag.get_start_time()
 	#### READ THE MESSAGES IN THE MOST INEFFICIENT MANNER
@@ -38,12 +42,18 @@ def readMessages(desiredTopics, desiredFields, bag):
                                 k -=(len(desiredFields[i])- j)
                                 if (len(lists_[k]) < 1):
                                         lists_[k].append(['time',topic+'/'+desiredFields_[k]])
-                                else: 
-                                        lists_[k].append([t.to_sec()-StartTime,eval(desiredFields[i][j])])
+                                lists_[k].append([t.to_sec()-StartTime,eval(desiredFields[i][j])])
 
 	lists_ = np.asarray(lists_)
 	return lists_
 	
+
+def processData(lists):
+	for i,j in enumerate(lists):
+
+		lists[i] = [[v[0],1.0] if v[1] == True else [v[0],0.0] if v[1] == False else v for v in j]
+
+	return lists
 
 def saveProcessed(lists,f):
         cnt= 0
@@ -55,8 +65,11 @@ def saveProcessed(lists,f):
                                 print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
                                 if not os.path.exists('./'+f.replace('-','_')[0:-4]):
                                         os.makedirs('./'+f.replace('-','_')[0:-4])
-                                np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:-1],delimiter=',',fmt="%f")
+                                np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:len(lists[i])],delimiter=',',fmt="%f")
                                 cnt += 1
+				if f == "rntest9_2019-05-27-15-12-53.bag":
+					if i ==3:
+						 pdb.set_trace()
                 np.savetxt('./'+f.replace('-','_')[0:-4]+'/processed.processed',[])
                 #np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
                 print "SAVED ",cnt," Files"
@@ -84,6 +97,9 @@ def main():
             bag = rosbag.Bag(f)
             proc_list = readMessages(desiredTopics, desiredFields, bag)
             bag.close()
+	    if f == "rntest9_2019-05-27-15-12-53.bag":
+		pdb.set_trace()
+	    proc_list = processData(proc_list)
             saveProcessed(proc_list,f)
             #print proc_list		
 

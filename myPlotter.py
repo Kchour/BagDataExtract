@@ -55,38 +55,35 @@ def storeProcessed(listdir_,ndx):
 ################## FOR loop to look through each folder on the list ##############
 ##################################################################################
 #from bokeh.models import Legend	#used for legend placement
-#for i in range(len(listdir_)):
-#	
-#	name_,data_ = storeProcessed(listdir_,i)
-#	vehicle_speed_ndx = returnPltPos(name_,"_pacmod_as_tx_vehicle_speed_msg.data")
-#	throttle_ndx = returnPltPos(name_,"_pacmod_as_rx_accel_cmd_msg.command")
-#	#brake_ndx = returnPltPos(name_,"_pacmod_as_rx_brake_cmd_msg.command")
-#	#steer_ndx = returnPltPos(name_,"_pacmod_as_rx_steer_cmd_msg.command")
-#	try:	
-#		output_file(listdir_[i][2:-1]+".html")
-#
-#		p1 = figure(title=listdir_[i], x_axis_label='time')
-#		p1.line(data_[vehicle_speed_ndx][:,0], data_[vehicle_speed_ndx][:,1], legend="PACMod Speed",line_width=2, line_color="red")
-#		p1.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="throttle input",line_width=2, line_color="blue")
-#		#p1.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="brake input",line_width=2, line_color="green")
-#		#p1.line(data_[steer_ndx][:,0], data_[steer_ndx][:,1], legend="steer input",line_width=2, line_color="orange")
-#		##### p2.line(data_[fakeyaw_ndx][:,0], data_[fakeyaw_ndx][:,1], legend="fakeyaw",line_width=2, line_color="green")
-#
-#		# Create subplots
-#		curr = gridplot([[p1]])		# Subplots
-#		show(curr)				# show plot
-#
-#		####Example of legend placement (outside). Plot1 is a plotted figure object
-#		#legend_it.append((str(values[i])+'%',[plot1]))
-#		#legend = Legend(items=legend_it)
-#		#legend.click_policy="hide"
-#		#p1.add_layout(legend,'right')
-#		#curr = gridplot([[p1]])
-#		#show(curr)
-#	except Exception:
-#		print i, listdir_[i], traceback.format_exc()		
-#		pass
-#
+for i in range(len(listdir_)):
+	name_,data_ = storeProcessed(listdir_,i)
+	result1Ndx = returnPltPos(name_,"_result_t1_msg.data")
+	result2Ndx = returnPltPos(name_,"_result_t2_msg.data")
+	vehicleEnableNdx = returnPltPos(name_,"_vehicle_dbw_enabled_msg.data")
+	vehicleTwistNdx = returnPltPos(name_,"_vehicle_twistfake_msg.twist.angular.z")
+        try:	
+		output_file(listdir_[i][2:-1]+".html")
+		p1 = figure(title=listdir_[i], x_axis_label='time')
+		p1.line(data_[result1Ndx][:,0], data_[result1Ndx][:,1], legend="Result1",line_width=2, line_color="red")
+		p1.line(data_[result2Ndx][:,0], data_[result2Ndx][:,1], legend="Result2",line_width=2, line_color="blue")
+		p1.line(data_[vehicleEnableNdx][:,0], data_[vehicleEnableNdx][:,1], legend="Enabled",line_width=2, line_color="green")
+		p1.line(data_[vehicleTwistNdx][:,0], data_[vehicleTwistNdx][:,1], legend="Yaw Rate",line_width=2, line_color="yellow")
+
+		# Create subplots
+		curr = gridplot([[p1]])		# Subplots
+		show(curr)				# show plot
+
+		####Example of legend placement (outside). Plot1 is a plotted figure object
+		#legend_it.append((str(values[i])+'%',[plot1]))
+		#legend = Legend(items=legend_it)
+		#legend.click_policy="hide"
+		#p1.add_layout(legend,'right')
+		#curr = gridplot([[p1]])
+		#show(curr)
+	except Exception:
+		print i, listdir_[i], traceback.format_exc()		
+		pass
+
 
 
 
