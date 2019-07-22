@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('speed6_test1_2019-05-14-16-20-22.bag')
+bag = rosbag.Bag('brake_0_5mph.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()
@@ -35,4 +35,3 @@ while True:
 		print "TOPIC: ",topics_[ndx-1],"\n","TYPE: ",types[ndx-1],"\n","MSG: ","\n\n", msg_fields[ndx-1]
 		print "\n"	
 	
-			

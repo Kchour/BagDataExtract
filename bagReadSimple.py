@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 #### SPECIFY DISIRED TOPICS AND FIELDS  ####
 desiredTopics = ['/vectornav/fix',
 	         '/as_tx/vehicle_speed',
-		 '/vectornav/velTEST',
+		 '/vectornav/veltest',
                  '/vehicle/odom2',
                  '/vehicle/odom1',
                  '/vectornav/gps',
@@ -21,18 +21,22 @@ desiredTopics = ['/vectornav/fix',
                  '/as_rx/steer_cmd',
                  '/as_rx/accel_cmd',
                  '/vectornav/ins',
-                 '/vectornav/imu']
+                 '/vectornav/imu',
+                 '/parsed_tx/accel_rpt',
+                 '/parsed_tx/brake_rpt']
 desiredFields = [['msg.latitude','msg.longitude'],
                  ['msg.data'],
                  ['msg.data'],
 		 ['msg.x','msg.y','msg.yaw'],                   # Need to check odom2 
 		 ['msg.twist.twist.angular.z'],                 # Need to check odom1
-                 ['msg.LLA.x', 'msg.LLA.y'],
-                 ['msg.command'],                               # Need to check brake_cms
+                 ['msg.LLA.x', 'msg.LLA.y', 'msg.LLA.z'],
+                 ['msg.command'],                               # Need to check brake_cmd
                  ['msg.command'],
                  ['msg.command'],
                  ['msg.LLA.x', 'msg.LLA.y'],
-                 ['msg.Gyro.x', 'msg.Gyro.y', 'msg.Gyro.z']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.Gyro.x', 'msg.Gyro.y', 'msg.Gyro.z'],
+                 ['msg.manual_input', 'msg.output'],
+                 ['msg.command']]	                        #### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
