@@ -76,8 +76,15 @@ for i in range(len(listdir_)):
 	throttleout_ndx = manualthrottle_ndx = returnPltPos(name_,"_parsed_tx_accel_rpt_msg.output")
 	brakeout_ndx = returnPltPos(name_,"_parsed_tx_brake_rpt_msg.command")
 
+	f = open("linear_acceleration.txt","w+")
+	for i in range(vecvelocity_ndx - 1):
+	 f.write("This is line %d\r\n" % (i+1))
+	f.close
+
+
 
 	try:	
+		output_file(listdir_[i][2:-1]+".html")
 		output_file(listdir_[i][2:-1]+".html")
 
 		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
