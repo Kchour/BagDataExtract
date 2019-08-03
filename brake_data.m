@@ -1,4 +1,4 @@
-close all; clear all; clc;
+% close all; clear all; clc;
 
 %% Acceleration Data For Variety of velocities for 0% Brake 
 velocity = [2.399589, 4.471362, 6.448318, 8.559670, 11.072673, 13.000194, 15.507926, 17.218624];  % m/s
@@ -29,7 +29,7 @@ brake40mph2 = (7.524243-9.391258)/(34.173213-32.313172);
 
 acceleration0 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-figure(1)
+figure(2)
 plot(velocity, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
 xlabel('Velocity (m/s)')
 ylabel('Acceleration (m/s^2)')
@@ -258,26 +258,6 @@ plot(velocity, acceleration90, 'color', [0 0.0 1.0], 'linestyle', '-', 'marker',
 %% Acceleration Data For Variety of velocities for 100% Brake 
 velocity = [1.928696, 4.471362, 6.240145, 8.445275, 10.433095, 12.800073, 15.110204, 17.132518];  % m/s
 
-brake5mph = (1.002167-1.652539)/(12.059458-11.799472);
-brake5mph2 = (1.002167-1.928696)/(12.059458-11.619492);
-brake10mph = (0.017548-4.031670)/(12.565067-11.305132);
-brake10mph2 = (3.475173-4.031670)/(11.485057-11.305132);
-brake15mph = (0.013415-5.960922)/(12.843380-11.343471);
-brake15mph2 = (3.082864-4.052475)/(11.923383-11.763438);
-brake20mph = (0.054862-7.776219)/(15.783230-14.383220);
-brake20mph2 = (5.083097-6.023913)/(14.943223-14.783308);
-brake20mph3 = (3.098999-4.078669)/(15.263215-15.103195);
-brake25mph = (1.082500-8.053253)/(20.616753-19.436749);
-brake25mph2 = (7.036176-8.053253)/(19.616799-19.436749);
-brake30mph = (1.046045-12.000106)/(19.244762-17.324610);
-brake30mph2 = (6.035804-7.093731)/(18.384572-18.204549);
-brake35mph = (1.013878-13.650503)/(21.951832-19.591742);
-brake35mph2 = (8.024567-9.015447)/(20.631723-20.451737);
-brake40mph = (1.059394-15.060981)/(20.295656-17.575656);
-brake40mph2 = (8.092875-9.019177)/(18.915683-18.735818);
-
-acceleration100 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
-
 point1 = [11.899499,1.480823];   point2 = [12.139462,0.732414];
 point3 = [11.859419,1.569900];   point4 = [12.239466,0.317064];
 brake5mph = (point2(2)-point1(2))/(point2(1)-point1(1));
@@ -298,7 +278,7 @@ point3 = [14.343355,7.844131];   point4 = [15.483233,1.694061];
 brake20mph = (point2(2)-point1(2))/(point2(1)-point1(1));
 brake20mph2 = (point4(2)-point3(2))/(point4(1)-point3(1));
 
-point1 = [19.256861,9.011877];   point2 = [19.496758,7.710627];
+point1 = [19.256861,9.011877];   point2 = [19.636900,6.917113];
 point3 = [19.056753,9.760914];   point4 = [20.396765,2.392165];
 brake25mph = (point2(2)-point1(2))/(point2(1)-point1(1));
 brake25mph2 = (point4(2)-point3(2))/(point4(1)-point3(1));
@@ -319,9 +299,9 @@ brake40mph = (point2(2)-point1(2))/(point2(1)-point1(1));
 brake40mph2 = (point4(2)-point3(2))/(point4(1)-point3(1));
 
 
-acceleration1002 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
+acceleration100 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity, acceleration1002, 'color', [0 0.7490 1.0], 'linestyle', '-', 'marker', 'o')
+plot(velocity, acceleration100, 'color', [0 0.7490 1.0], 'linestyle', '-', 'marker', 'o')
 legend('0% Brake', '50% Brake', '60% Brake','70% Brake','80% Brake','90% Brake','100% Brake')
 
 
