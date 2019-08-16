@@ -1,4 +1,4 @@
-close all; clear all; clc;
+% close all; clear all; clc;
 
 order = 3;      % order of sgolay filter
 framelen = 31;  % window size of sgolay filter

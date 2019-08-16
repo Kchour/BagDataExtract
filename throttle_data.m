@@ -86,7 +86,7 @@ throttle_70_vel = mean(sorted_vel(startmax:endmax,:));
 
 velocity_ss = [0, 0, throttle_275_vel, throttle_30_vel, throttle_35_vel, throttle_40_vel, throttle_45_vel, throttle_50_vel, throttle_55_vel, throttle_60_vel, throttle_65_vel, throttle_70_vel]'; %m/s
 
-figure(1)
+figure(11)
 plot(throttle, velocity_ss, 'b-o')
 xlabel('Throttle %')
 ylabel('Steady State Velocity (m/s)')
@@ -160,7 +160,7 @@ acc70 = mean(sorted_acc(startmax2:endmax2,:));
 
 acceleration= [acc0, acc25, acc275, acc30, acc35, acc40, acc45, acc50, acc55, acc60, acc65, acc70];
 
-figure(2)
+figure(12)
 plot(throttle, acceleration, 'r-o')
 xlabel('Throttle %')
 ylabel('Acceleration (m/s^2)')
