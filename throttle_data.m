@@ -166,4 +166,3 @@ xlabel('Throttle %')
 ylabel('Acceleration (m/s^2)')
 title('Acceleration from Throttle Step Input starting at 0 m/s')
 
-% 
