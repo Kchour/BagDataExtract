@@ -87,18 +87,18 @@ for i in range(len(listdir_)):
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
 
-		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
+		p1 = figure(title=listdir_[i], x_axis_label='longitude (m)', y_axis_label='latitude (m)')
 		p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
 
-		p2 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='latitude')
+		p2 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='acceleration (m/s^2)')
 		p2.line(data_[acc_x_ndx][:,0], data_[acc_x_ndx][:,1], legend="Acceleration X",line_width=2, line_color="red")
 		p2.line(data_[acc_y_ndx][:,0], data_[acc_y_ndx][:,1], legend="Acceleration Y",line_width=2, line_color="blue")
 		p2.line(data_[acc_z_ndx][:,0], data_[acc_z_ndx][:,1], legend="Acceleration Z",line_width=2, line_color="green")
 
-		p3 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='velocity (m/s) or throttle/brake %')
+		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or throttle %')
 		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity",line_width=2, line_color="red")
 		p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
-		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="cyan")
+		p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
 
 		# p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="cyan")

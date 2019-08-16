@@ -158,8 +158,6 @@ filtered_acc_70 = sgolayfilt(acc_data_70(:,1),acc_order,acc_framelen);
 sorted_acc = sort(filtered_acc_70(:,1), 'descend');
 acc70 = mean(sorted_acc(startmax2:endmax2,:));
 
-
-
 acceleration= [acc0, acc25, acc275, acc30, acc35, acc40, acc45, acc50, acc55, acc60, acc65, acc70];
 
 figure(2)
@@ -167,3 +165,5 @@ plot(throttle, acceleration, 'r-o')
 xlabel('Throttle %')
 ylabel('Acceleration (m/s^2)')
 title('Acceleration from Throttle Step Input starting at 0 m/s')
+
+% 
