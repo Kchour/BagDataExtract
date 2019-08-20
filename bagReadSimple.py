@@ -35,8 +35,8 @@ desiredFields = [['msg.latitude','msg.longitude'],
                  ['msg.command'],
                  ['msg.LLA.x', 'msg.LLA.y'],
                  ['msg.Gyro.x', 'msg.Gyro.y', 'msg.Gyro.z'],
-                 ['msg.manual_input', 'msg.output'],
-                 ['msg.command']]	                        #### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.manual_input', 'msg.command', 'msg.output'],
+                 ['msg.manual_input', 'msg.command', 'msg.output']]	                        #### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
