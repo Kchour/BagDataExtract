@@ -1,79 +1,71 @@
-% close all; clear all; clc;
+close all; clear all; clc;
 
 order = 3;      % order of sgolay filter
-framelen = 31;  % window size of sgolay filter
+framelen = 51;  % window size of sgolay filter
 minlen = 10;    % takes the amount of minimum values
 startmin = 5;
 endmin = 10;
 
 %% Acceleration Data For Variety of velocities for 30% Throttle
-velocity = [0];  % m/s
+velocity = [0, 2.553675, 4.835632, 6.742623, 8.938421, 11.608050 ];  % m/s
 
 inFile = 'throttle_30_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
-% inFile = 'brake_0_10mph/_vectornav_veltest_msg.data.txt';
+% inFile = 'throttle_30_0mph2/_vectornav_veltest_msg.data.txt';
 % data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
+% linear_acceleration = gradient(data(:,2),0.02);
+% filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+% sort_filtered_data = sort(filtered_la, 'descend');
 % 
-% brake10mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_15mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake15mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_20mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake20mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_25mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake25mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_30mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake30mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_35mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake35mph = mean(sort_filtered_data(startmin:endmin,:));
-% 
-% inFile = 'brake_0_40mph/_vectornav_veltest_msg.data.txt';
-% data = load(inFile, '-ascii');
-% filtered_data = gradient(data(:,2),0.02);
-% y = sgolayfilt(filtered_data(:,1),order,framelen);
-% sort_filtered_data = sort(y);
-% 
-% brake40mph = mean(sort_filtered_data(startmin:endmin,:));
+% throttle0mph2 = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration30 = [throttle0mph];
+inFile = 'throttle_30_5mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle5mph = mean(filtered_la_time(990:995,2));
+
+inFile = 'throttle_30_10mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle10mph = mean(filtered_la_time(1386:1391,2));
+
+inFile = 'throttle_30_15mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle15mph = mean(filtered_la_time(897:902,2));
+
+inFile = 'throttle_30_20mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle20mph = mean(filtered_la_time(1739:1744,2));
+
+inFile = 'throttle_30_25mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle25mph = mean(filtered_la_time(1395:1400,2));
+
+acceleration30 = [throttle0mph, throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 figure(10)
 plot(velocity, acceleration30, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
@@ -87,9 +79,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_35_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -99,17 +91,65 @@ plot(velocity, acceleration35, 'color', [1 0.0 0.0], 'linestyle', '-', 'marker',
 
 
 %% Acceleration Data For Variety of velocities for 40% Throttle
-velocity = [0];  % m/s
+velocity = [0, 2.407849, 4.528014, 6.851334, 9.089426, 11.368424 ];  % m/s
 
 inFile = 'throttle_40_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration40 = [throttle0mph];
+% inFile = 'throttle_40_0mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% linear_acceleration = gradient(data(:,2),0.02);
+% filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+% sort_filtered_data = sort(filtered_la, 'descend');
+% 
+% throttle0mph2 = mean(sort_filtered_data(startmin:endmin,:))
+
+inFile = 'throttle_40_5mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle5mph = mean(filtered_la_time(1373:1383,2));
+
+inFile = 'throttle_40_10mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle10mph = mean(filtered_la_time(1842:1847,2));
+
+inFile = 'throttle_40_15mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle15mph = mean(filtered_la_time(1521:1526,2));
+
+inFile = 'throttle_40_20mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle20mph = mean(filtered_la_time(1024:1029,2));
+
+inFile = 'throttle_40_25mph/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+filtered_la_time = [data(:,1), filtered_la(:,1)];
+
+throttle25mph = mean(filtered_la_time(1654:1659,2));
+
+acceleration40 = [throttle0mph, throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 plot(velocity, acceleration40, 'color', [0.75 0.0 0.0], 'linestyle', '-', 'marker', 'o')
 
@@ -118,9 +158,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_45_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -133,11 +173,19 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_50_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
+
+% inFile = 'throttle_50_0mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% linear_acceleration = gradient(data(:,2),0.02);
+% filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+% sort_filtered_data = sort(filtered_la, 'descend');
+% 
+% throttle0mph2 = mean(sort_filtered_data(startmin:endmin,:))
 
 acceleration50 = [throttle0mph];
 
@@ -148,9 +196,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_55_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -163,11 +211,19 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_60_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
+
+% inFile = 'throttle_60_0mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% linear_acceleration = gradient(data(:,2),0.02);
+% filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+% sort_filtered_data = sort(filtered_la, 'descend');
+% 
+% throttle0mph2 = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration60 = [throttle0mph];
 
@@ -178,9 +234,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_65_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -193,11 +249,19 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_70_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
+
+% inFile = 'throttle_70_0mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% linear_acceleration = gradient(data(:,2),0.02);
+% filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+% sort_filtered_data = sort(filtered_la, 'descend');
+% 
+% throttle0mph2 = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration70 = [throttle0mph];
 
@@ -208,9 +272,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_75_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -223,9 +287,9 @@ velocity = [0];  % m/s
 
 inFile = 'throttle_80_0mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la, 'descend');
 
 throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
@@ -233,20 +297,6 @@ acceleration80 = [throttle0mph];
 
 plot(velocity, acceleration80, 'color', [1.0 0.0 1.0], 'linestyle', '-', 'marker', 'o')
 
-%% Acceleration Data For Variety of velocities for 85% Throttle
-velocity = [0];  % m/s
-
-inFile = 'throttle_85_0mph/_vectornav_veltest_msg.data.txt';
-data = load(inFile, '-ascii');
-filtered_data = gradient(data(:,2),0.02);
-y = sgolayfilt(filtered_data(:,1),order,framelen);
-sort_filtered_data = sort(y, 'descend');
-
-throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
-
-acceleration85 = [throttle0mph];
-
-plot(velocity, acceleration85, 'color', [0.75 0.0 0.75], 'linestyle', '-', 'marker', 'o')
-
+grid on
 legend('30% Throttle', '35% Throttle', '40% Throttle', '45% Throttle', '50% Throttle', '55% Throttle',...
-    '60% Throttle', '65% Throttle', '70% Throttle', '75% Throttle', '80% Throttle', '85% Throttle')
+    '60% Throttle', '65% Throttle', '70% Throttle', '75% Throttle', '80% Throttle')
