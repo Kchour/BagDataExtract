@@ -1,7 +1,7 @@
 close all; clear all; clc;
 
 order = 3;      % order of sgolay filter
-framelen = 31;  % window size of sgolay filter
+framelen = 51;  % window size of sgolay filter
 minlen = 10;    % takes the amount of minimum values
 startmin = 5;
 endmin = 10;
@@ -133,6 +133,14 @@ sort_filtered_data = sort(y);
 
 brake30mph = mean(sort_filtered_data(startmin:endmin,:));
 
+% inFile = 'brake_50_30mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% filtered_data = gradient(data(:,2),0.02);
+% y = sgolayfilt(filtered_data(:,1),order,framelen);
+% sort_filtered_data = sort(y);
+% 
+% brake30mph = mean(sort_filtered_data(startmin:endmin,:))
+
 inFile = 'brake_50_35mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
@@ -204,6 +212,14 @@ sort_filtered_data = sort(y);
 
 brake30mph = mean(sort_filtered_data(startmin:endmin,:));
 
+% inFile = 'brake_60_30mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% filtered_data = gradient(data(:,2),0.02);
+% y = sgolayfilt(filtered_data(:,1),order,framelen);
+% sort_filtered_data = sort(y);
+% 
+% brake30mph = mean(sort_filtered_data(startmin:endmin,:))
+
 inFile = 'brake_60_35mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
@@ -273,6 +289,14 @@ y = sgolayfilt(filtered_data(:,1),order,framelen);
 sort_filtered_data = sort(y);
 
 brake30mph = mean(sort_filtered_data(startmin:endmin,:));
+
+% inFile = 'brake_70_30mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% filtered_data = gradient(data(:,2),0.02);
+% y = sgolayfilt(filtered_data(:,1),order,framelen);
+% sort_filtered_data = sort(y);
+% 
+% brake30mph = mean(sort_filtered_data(startmin:endmin,:))
 
 inFile = 'brake_70_35mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
@@ -344,6 +368,15 @@ y = sgolayfilt(filtered_data(:,1),order,framelen);
 sort_filtered_data = sort(y);
 
 brake30mph = mean(sort_filtered_data(startmin:endmin,:));
+
+% inFile = 'brake_80_30mph2/_vectornav_veltest_msg.data.txt';
+% data = load(inFile, '-ascii');
+% filtered_data = gradient(data(:,2),0.02);
+% y = sgolayfilt(filtered_data(:,1),order,framelen);
+% sort_filtered_data = sort(y);
+% 
+% brake30mph = mean(sort_filtered_data(startmin:endmin,:))
+
 
 inFile = 'brake_80_35mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
@@ -458,7 +491,7 @@ data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
 sort_filtered_data = sort(y);
-y2 = sgolayfilt(filtered_data(:,1),order,framelen)
+y2 = sgolayfilt(filtered_data(:,1),order,framelen);
 sort_filtered_data2 = sort(y);
 
 brake15mph = mean(sort_filtered_data(startmin:endmin,:));
