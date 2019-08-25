@@ -80,6 +80,7 @@ plot(velocity, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker'
 xlabel('Velocity (m/s)')
 ylabel('Acceleration (m/s^2)')
 title('Braking Speed-based Acceleration Map')
+grid on
 hold on
 
 %% Acceleration Data For Variety of velocities for 50% Brake 
