@@ -104,7 +104,7 @@ for i in range(len(listdir_)):
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
 
 		# p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="cyan")
-		p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="green")
+		# p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="green")
 		# p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="green")
 		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="black")
 
