@@ -98,7 +98,7 @@ for i in range(len(listdir_)):
 
 		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or throttle %')
 		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity",line_width=2, line_color="red")
-		p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
+		# p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
 
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
@@ -108,12 +108,12 @@ for i in range(len(listdir_)):
 		# p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="green")
 		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="black")
 
-		p4 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='throttle')
-		p4.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1]*100, legend="Throttle % Command",line_width=2, line_color="red")
-		p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
-		p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
+		# p4 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='throttle')
+		# p4.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1]*100, legend="Throttle % Command",line_width=2, line_color="red")
+		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
+		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		curr = gridplot([[p1, p3, p4]])
+		curr = gridplot([[ p3]])
 		show(curr)
 
 	except Exception:
