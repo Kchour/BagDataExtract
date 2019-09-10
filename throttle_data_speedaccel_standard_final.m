@@ -468,6 +468,7 @@ acceleration = [acceleration0, acceleration10, acceleration20, acceleration30, a
                 acceleration50, acceleration60, acceleration70];
 throttle = [0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30,...
             40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50, 50, 60, 60, 60, 60, 60, 60, 70, 70, 70, 70, 70, 70];   
+throttle1 = 0.01*throttle;
 
-createFit(speed, throttle, acceleration)
-  
+% createFit(speed, throttle, acceleration)
+cftool
