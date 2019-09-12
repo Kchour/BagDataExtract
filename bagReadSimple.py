@@ -23,7 +23,9 @@ desiredTopics = ['/vectornav/fix',
                  '/vectornav/ins',
                  '/vectornav/imu',
                  '/parsed_tx/accel_rpt',
-                 '/parsed_tx/brake_rpt']
+                 '/parsed_tx/brake_rpt',
+                 '/desired_acceleration',
+                 '/desired_velocity']
 desiredFields = [['msg.latitude','msg.longitude'],
                  ['msg.data'],
                  ['msg.data'],
@@ -36,7 +38,9 @@ desiredFields = [['msg.latitude','msg.longitude'],
                  ['msg.LLA.x', 'msg.LLA.y'],
                  ['msg.Gyro.x', 'msg.Gyro.y', 'msg.Gyro.z'],
                  ['msg.manual_input', 'msg.command', 'msg.output'],
-                 ['msg.manual_input', 'msg.command', 'msg.output']]	                        #### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+                 ['msg.manual_input', 'msg.command', 'msg.output'],
+                 ['msg.data'],
+                 ['msg.data']]	                        #### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
 
 #### ------------------------------------ ####
 
