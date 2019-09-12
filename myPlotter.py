@@ -118,5 +118,3 @@ for i in range(len(listdir_)):
 	except Exception:
 		print i, listdir_[i], traceback.format_exc()		
 		pass
-
-	
