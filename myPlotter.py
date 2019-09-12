@@ -96,7 +96,7 @@ for i in range(len(listdir_)):
 		p2.line(data_[acc_y_ndx][:,0], data_[acc_y_ndx][:,1], legend="Acceleration Y",line_width=2, line_color="blue")
 		p2.line(data_[acc_z_ndx][:,0], data_[acc_z_ndx][:,1], legend="Acceleration Z",line_width=2, line_color="green")
 
-		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or throttle %')
+		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or acceleration (m/s^2)')
 		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity",line_width=2, line_color="red")
 		# p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
 
