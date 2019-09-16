@@ -95,7 +95,7 @@ for i in range(len(listdir_)):
 		output_file(listdir_[i][2:-1]+".html")
 
 		p1 = figure(title=listdir_[i], x_axis_label='longitude', y_axis_label='latitude')
-		p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
+		p1.line(data_[long_ndx][1000:2500,1] - data_[long_ndx][0,1], data_[lat_ndx][1000:2500,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
 
 		p2 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='latitude')
 		p2.line(data_[acc_x_ndx][:,0], data_[acc_x_ndx][:,1], legend="Acceleration X",line_width=2, line_color="red")
