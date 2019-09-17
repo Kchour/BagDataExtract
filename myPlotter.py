@@ -107,7 +107,7 @@ for i in range(len(listdir_)):
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="red")
 
 		p3.line(data_[linear_acc_cmd_ndx][:,0], data_[linear_acc_cmd_ndx][:,1], legend="Desired Acceleration",line_width=2, line_color="black")
-		p3.line(data_[linear_vel_cmd_ndx][:,0], data_[linear_vel_cmd_ndx][:,1], legend="Desired Velocity",line_width=2, line_color="purple")
+		# p3.line(data_[linear_vel_cmd_ndx][:,0], data_[linear_vel_cmd_ndx][:,1], legend="Desired Velocity",line_width=2, line_color="purple")
 
 
 		p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="green")
