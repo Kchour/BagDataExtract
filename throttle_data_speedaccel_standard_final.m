@@ -52,7 +52,7 @@ sort_filtered_data = sort(filtered_la);
 
 throttle25mph = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration0 = [ throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
+acceleration0 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 figure(10)
 plot(velocity0, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
