@@ -7,7 +7,7 @@ startmin = 2;
 endmin = 7;
 
 %% Acceleration Data For Variety of velocities for 0% Throttle and 0% Brake
-velocity0 = [0, 2.123705, 4.469851, 6.704146, 8.632719, 11.077284 ];  % m/s
+velocity0 = [2.123705, 4.469851, 6.704146, 8.632719, 11.077284 ];  % m/s
 
 throttle0mph = 0;
 
@@ -51,7 +51,7 @@ sort_filtered_data = sort(filtered_la);
 
 throttle25mph = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration0 = [throttle0mph, throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
+acceleration0 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 figure(10)
 plot(velocity0, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
@@ -61,7 +61,7 @@ title('Throttle Speed-based Acceleration Map')
 hold on
 
 %% Acceleration Data For Variety of velocities for 10% Throttle
-velocity10 = [0, 2.150568, 4.610507, 6.883732, 8.903720, 11.732343 ];  % m/s
+velocity10 = [2.150568, 4.610507, 6.883732, 8.903720, 11.732343 ];  % m/s
 
 throttle0mph = 0;
 % inFile = 'throttle_10_0mph_standard/_vectornav_veltest_msg.data.txt';
@@ -112,12 +112,12 @@ sort_filtered_data = sort(filtered_la);
 
 throttle25mph = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration10 = [throttle0mph, throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
+acceleration10 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 plot(velocity10, acceleration10, 'color', [1.0 0.0 0.6], 'linestyle', '-', 'marker', 'o')
 
 %% Acceleration Data For Variety of velocities for 20% Throttle
-velocity20 = [0, 2.205543, 5.029780, 7.124045, 9.092222, 11.470508 ];  % m/s
+velocity20 = [2.205543, 5.029780, 7.124045, 9.092222, 11.470508 ];  % m/s
 
 throttle0mph = 0;
 
@@ -161,7 +161,7 @@ sort_filtered_data = sort(filtered_la);
 
 throttle25mph = mean(sort_filtered_data(startmin:endmin,:));
 
-acceleration20 = [throttle0mph, throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
+acceleration20 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
 plot(velocity20, acceleration20, 'color', [1.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
 
@@ -447,26 +447,26 @@ legend('0% Throttle','10% Throttle', '20% Throttle','30% Throttle', '40% Throttl
 
 %% Calculating average velocities
 
-speed_5mph = mean([velocity0(2), velocity10(2), velocity20(2), velocity30(2), velocity40(2), velocity50(2),...
-                    velocity60(2), velocity60(2)])
-                
-speed_10mph = mean([velocity0(3), velocity10(3), velocity20(3), velocity30(3), velocity40(3), velocity50(3),...
-                    velocity60(3), velocity60(3)])
-                
-speed_15mph = mean([velocity0(4), velocity10(4), velocity20(4), velocity30(4), velocity40(4), velocity50(4),...
-                    velocity60(4), velocity60(4)])
-                
-speed_20mph = mean([velocity0(5), velocity10(5), velocity20(5), velocity30(5), velocity40(5), velocity50(5),...
-                    velocity60(5), velocity60(5)])
-                
-speed_25mph = mean([velocity0(6), velocity10(6), velocity20(6), velocity30(6), velocity40(6), velocity50(6),...
-                    velocity60(6), velocity60(6)])
+% speed_5mph = mean([velocity0(2), velocity10(2), velocity20(2), velocity30(2), velocity40(2), velocity50(2),...
+%                     velocity60(2), velocity60(2)])
+%                 
+% speed_10mph = mean([velocity0(3), velocity10(3), velocity20(3), velocity30(3), velocity40(3), velocity50(3),...
+%                     velocity60(3), velocity60(3)])
+%                 
+% speed_15mph = mean([velocity0(4), velocity10(4), velocity20(4), velocity30(4), velocity40(4), velocity50(4),...
+%                     velocity60(4), velocity60(4)])
+%                 
+% speed_20mph = mean([velocity0(5), velocity10(5), velocity20(5), velocity30(5), velocity40(5), velocity50(5),...
+%                     velocity60(5), velocity60(5)])
+%                 
+% speed_25mph = mean([velocity0(6), velocity10(6), velocity20(6), velocity30(6), velocity40(6), velocity50(6),...
+%                     velocity60(6), velocity60(6)])
 
 %% Developing vectors for surface fitting
 speed = [velocity0, velocity10, velocity20, velocity30, velocity40, velocity50, velocity60, velocity70];
 acceleration = [acceleration0, acceleration10, acceleration20, acceleration30, acceleration40,...
                 acceleration50, acceleration60, acceleration70];
-throttle = [0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30,...
+throttle = [0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 30,...
             40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50, 50, 60, 60, 60, 60, 60, 60, 70, 70, 70, 70, 70, 70];   
 throttle1 = 0.01*throttle;
 
