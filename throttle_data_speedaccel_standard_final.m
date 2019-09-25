@@ -471,4 +471,5 @@ throttle = [0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 30, 30, 30, 3
 throttle1 = 0.01*throttle;
 
 % createFit(speed, throttle, acceleration)
+throttleDynamics(speed, throttle, acceleration)
 cftool
