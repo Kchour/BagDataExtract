@@ -434,8 +434,8 @@ plot(velocity_360, steering_360, 'color', [0.0 1.0 1.0], 'linestyle', '-', 'mark
 plot(velocity_450, steering_450, 'color', [1.0 0.0 1.0], 'linestyle', '-', 'marker', 'o')
 
 xlabel('Velocity (m/s)')
-ylabel('Lateral Velocity (m/s)')
-title('Steering Speed-based Lateral Velocity Map')
+ylabel('Lateral Acceleration (m/s^{2})')
+title('Steering Speed-based Lateral Acceleration Map')
 grid on
 legend('450° steering', '360° steering', '270° steering', '180° steering', '90° steering',...
        '-90° steering', '-180° steering', '-270° steering', '-360° steering', '-450° steering')
@@ -467,5 +467,8 @@ steering_wheel_angles = [sw_450, sw_360, sw_270, sw_180, sw_90, sw90, sw180, sw2
 steering_wheel_angles_rad = pi/180 * steering_wheel_angles;
 
 road_wheel_angles_rad = steering_wheel_angles_rad/12.5;
+road_wheel_angles_deg = steering_wheel_angles/12.5;
 
+lateralDynamics (speed, road_wheel_angles_rad, lateral_acceleration)
+lateralVelocity (speed, road_wheel_angles_rad, lateral_velocity)
 cftool
