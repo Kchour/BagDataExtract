@@ -631,9 +631,9 @@ legend('0% Brake', '40% Brake', '50% Brake', '60% Brake','70% Brake','80% Brake'
 % brake1 = 0.01*brake;
 
 
-speed = [velocity_brake0(1:5), velocity_brake50(1:5), velocity_brake60(1:5), velocity_brake70(1:5),...
+speed1_5 = [velocity_brake0(1:5), velocity_brake50(1:5), velocity_brake60(1:5), velocity_brake70(1:5),...
         velocity_brake80(1:5), velocity_brake90(1:5), velocity_brake100(1:5)];
-acceleration = [acceleration0(1:5), acceleration_brake50(1:5), acceleration_brake60(1:5), acceleration_brake70(1:5),...
+acceleration1_5 = [acceleration0(1:5), acceleration_brake50(1:5), acceleration_brake60(1:5), acceleration_brake70(1:5),...
                 acceleration_brake80(1:5), acceleration_brake90(1:5), acceleration_brake100(1:5)];
 brake0 = 0*ones(size(acceleration0));
 brake40 = -40*ones(size(acceleration_brake40));
@@ -644,9 +644,19 @@ brake80 = -80*ones(size(acceleration_brake80));
 brake90 = -90*ones(size(acceleration_brake90));
 brake100 = -100*ones(size(acceleration_brake100));
 
-brake = [brake0(1:5), brake50(1:5), brake60(1:5), brake70(1:5), brake80(1:5), brake90(1:5), brake100(1:5)];
+brake1_5 = [brake0(1:5), brake50(1:5), brake60(1:5), brake70(1:5), brake80(1:5), brake90(1:5), brake100(1:5)];
+brake1_5_1 = 0.01*brake1_5;
+
+speed = [velocity_brake0, velocity_brake50, velocity_brake60, velocity_brake70,...
+        velocity_brake80, velocity_brake90, velocity_brake100];
+acceleration = [acceleration0, acceleration_brake50, acceleration_brake60, acceleration_brake70,...
+                acceleration_brake80, acceleration_brake90, acceleration_brake100];
+         
+brake = [brake0, brake50, brake60, brake70, brake80, brake90, brake100];
 brake1 = 0.01*brake;
 
 % createFit(speed, throttle, acceleration)
+
+brakeDynamics(speed, brake, acceleration)
 cftool
 
