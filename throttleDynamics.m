@@ -34,7 +34,7 @@ ylabel( 'Throttle %', 'Interpreter', 'none' );
 zlabel( 'Longitdunal Acceleration (m/s^{2})');
 
 % Title
-title('Data-Driven Throttle Longitudinal Dynamics')
+% title('Data-Driven Throttle Longitudinal Dynamics')
 grid on
 
 
