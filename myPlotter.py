@@ -57,7 +57,7 @@ for i in range(len(listdir_)):
 	
 	name_,data_ = storeProccessed(listdir_,i)
 
-	long_ndx = returnPltPos(name_,"_vehicle_odom2_msg.x)
+	long_ndx = returnPltPos(name_,"_vehicle_odom2_msg.x")
 	lat_ndx = returnPltPos(name_,"_vehicle_odom2_msg.y")
 	height_ndx = returnPltPos(name_, "_vectornav_gps_msg.LLA.z")
 

@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('brake_0_5mph.bag')
+bag = rosbag.Bag('brake_20_5mph.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()

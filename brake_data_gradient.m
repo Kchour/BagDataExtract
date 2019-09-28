@@ -75,18 +75,12 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration0 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-figure(1)
-plot(velocity_brake0, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
-xlabel('Velocity (m/s)')
-ylabel('Acceleration (m/s^2)')
-title('Braking Speed-based Acceleration Map')
-grid on
-hold on
+
 
 %% Acceleration Data For Variety of velocities for 40% Brake 
 velocity_brake40 = [2.332692, 4.290472, 6.482032, 8.636277, 10.623586, 12.743763, 15.416848, 17.320083];  % m/s
 
-inFile = 'brake_40_5mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_40_5mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -94,7 +88,7 @@ sort_filtered_data = sort(y);
 
 brake5mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_40_10mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_40_10mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -102,7 +96,7 @@ sort_filtered_data = sort(y);
 
 brake10mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_40_15mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_40_15mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -110,7 +104,7 @@ sort_filtered_data = sort(y);
 
 brake15mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_40_20mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_40_20mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -118,7 +112,7 @@ sort_filtered_data = sort(y);
 
 brake20mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_40_25mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_40_25mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -152,11 +146,10 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake40 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake40, acceleration_brake40, 'color', [1 0.5 0.5], 'linestyle', '-', 'marker', 'o')
 %% Acceleration Data For Variety of velocities for 50% Brake 
 velocity_brake50 = [2.255553, 4.345825, 6.759151, 8.636277, 10.623586, 12.743763, 15.416848, 17.320083];  % m/s
 
-inFile = 'brake_50_5mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_50_5mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -164,7 +157,7 @@ sort_filtered_data = sort(y);
 
 brake5mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_50_10mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_50_10mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -172,7 +165,7 @@ sort_filtered_data = sort(y);
 
 brake10mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_50_15mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_50_15mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -180,7 +173,7 @@ sort_filtered_data = sort(y);
 
 brake15mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_50_20mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_50_20mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -188,7 +181,7 @@ sort_filtered_data = sort(y);
 
 brake20mph = mean(sort_filtered_data(startmin:endmin,:));
 
-inFile = 'brake_50_25mph/_vectornav_veltest_msg.data.txt';
+inFile = 'brake_50_25mph/_vectornav_velTEST_msg.data.txt';
 data = load(inFile, '-ascii');
 filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
@@ -230,7 +223,6 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake50 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake50, acceleration_brake50, 'color', [1 0.0 0.0], 'linestyle', '-', 'marker', 'o')
 
 %% Acceleration Data For Variety of velocities for 60% Brake 
 velocity_brake60 = [1.949396, 4.456033, 6.263209, 8.291727, 10.666364, 12.900174, 15.004222, 17.342080];  % m/s
@@ -309,7 +301,6 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake60 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake60, acceleration_brake60, 'color', [0.5764 0.0 0.0], 'linestyle', '-', 'marker', 'o')
 %% Acceleration Data For Variety of velocities for 70% Brake 
 velocity_brake70 = [2.370531, 4.337160, 6.588608, 8.268588, 10.751820, 12.916797, 15.015370, 17.322462];  % m/s
 
@@ -387,7 +378,6 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake70 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake70, acceleration_brake70, 'color', [0.0 1.0 0.0], 'linestyle', '-', 'marker', 'o')
 
 %% Acceleration Data For Variety of velocities for 80% Brake 
 velocity_brake80 = [2.103452, 4.275421, 6.515093, 8.560335, 10.620332, 13.058321, 15.060000, 17.381358];  % m/s
@@ -467,7 +457,6 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake80 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake80, acceleration_brake80, 'color', [0.0 0.5647 0.0], 'linestyle', '-', 'marker', 'o')
 %% Acceleration Data For Variety of velocities for 90% Brake 
 velocity_brake90 = [2.103452, 4.229488, 6.698545, 8.387588, 10.684664, 12.880022, 15.219108, 17.439246];  % m/s
 
@@ -537,7 +526,6 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake90 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
-plot(velocity_brake90, acceleration_brake90, 'color', [0 0.0 1.0], 'linestyle', '-', 'marker', 'o')
 %% Acceleration Data For Variety of velocities for 100% Brake 
 velocity_brake100 = [1.928696, 4.471362, 6.240145, 8.445275, 10.433095, 12.800073, 15.110204, 17.132518];  % m/s
 
@@ -610,7 +598,25 @@ brake40mph = mean(sort_filtered_data(startmin:endmin,:));
 
 acceleration_brake100 = [brake5mph, brake10mph, brake15mph, brake20mph, brake25mph, brake30mph, brake35mph, brake40mph];
 
+
+%% 2D Plotting 
+
+figure(1)
+plot(velocity_brake0, acceleration0, 'color', [0.0 0.0 0.0], 'linestyle', '-', 'marker', 'o')
+hold on
+
+plot(velocity_brake40, acceleration_brake40, 'color', [1 0.5 0.5], 'linestyle', '-', 'marker', 'o')
+plot(velocity_brake50, acceleration_brake50, 'color', [1 0.0 0.0], 'linestyle', '-', 'marker', 'o')
+plot(velocity_brake60, acceleration_brake60, 'color', [0.5764 0.0 0.0], 'linestyle', '-', 'marker', 'o')
+plot(velocity_brake70, acceleration_brake70, 'color', [0.0 1.0 0.0], 'linestyle', '-', 'marker', 'o')
+plot(velocity_brake80, acceleration_brake80, 'color', [0.0 0.5647 0.0], 'linestyle', '-', 'marker', 'o')
+plot(velocity_brake90, acceleration_brake90, 'color', [0 0.0 1.0], 'linestyle', '-', 'marker', 'o')
 plot(velocity_brake100, acceleration_brake100, 'color', [0 0.7490 1.0], 'linestyle', '-', 'marker', 'o')
+
+xlabel('Velocity (m/s)')
+ylabel('Acceleration (m/s^2)')
+title('Braking Speed-based Acceleration Map')
+grid on
 legend('0% Brake', '40% Brake', '50% Brake', '60% Brake','70% Brake','80% Brake','90% Brake','100% Brake')
 
 %% Developing vectors for surface fitting

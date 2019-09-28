@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 desiredTopics = ['/vectornav/fix',
 	         '/as_tx/vehicle_speed',
 		 '/vectornav/veltest',
+                 '/vectornav/velTEST',
                  '/vehicle/odom2',
                  '/vehicle/odom1',
                  '/vectornav/gps',
@@ -25,6 +26,7 @@ desiredTopics = ['/vectornav/fix',
                  '/parsed_tx/accel_rpt',
                  '/parsed_tx/brake_rpt']
 desiredFields = [['msg.latitude','msg.longitude'],
+                 ['msg.data'],
                  ['msg.data'],
                  ['msg.data'],
 		 ['msg.x','msg.y','msg.yaw'],                   # Need to check odom2 
