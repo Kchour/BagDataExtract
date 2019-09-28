@@ -471,4 +471,5 @@ road_wheel_angles_deg = steering_wheel_angles/12.5;
 
 lateralDynamics (speed, road_wheel_angles_rad, lateral_acceleration)
 lateralVelocity (speed, road_wheel_angles_rad, lateral_velocity)
+roadWheelAngle (speed, lateral_velocity, road_wheel_angles_rad)
 cftool
