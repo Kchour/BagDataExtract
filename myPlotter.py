@@ -65,7 +65,7 @@ for i in range(len(listdir_)):
 	acc_y_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.y")
 	acc_z_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.z")
 
-	vecvelocity_ndx = returnPltPos(name_,"_vectornav_veltest_msg.data")
+	vecvelocity_ndx = returnPltPos(name_,"_vectornav_velTEST_msg.data")
 	pacvelocity_ndx = returnPltPos(name_,"_as_tx_vehicle_speed_msg.data")
 	yaw_ndx = returnPltPos(name_,"_vehicle_odom2_msg.yaw")
 
