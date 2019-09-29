@@ -34,7 +34,7 @@ ylabel( 'Lateral Velocity (m/s)', 'Interpreter', 'none' );
 zlabel( 'Road Wheel Angle (rad)', 'Interpreter', 'none' );
 
 % title
-title ('Lateral Feedforward')
+% title ('Lateral Feedforward')
 grid on
 
 

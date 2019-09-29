@@ -33,7 +33,7 @@ xlabel( 'Velocity (m/s)', 'Interpreter', 'none' );
 ylabel( 'Road Wheel Angle (rad)', 'Interpreter', 'none' );
 zlabel( 'Lateral Acceleration (m/s^{2})');
 % Title
-title('Data-Driven Lateral Dynamics')
+% title('Data-Driven Lateral Dynamics')
 grid on
 
 

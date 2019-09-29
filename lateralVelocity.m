@@ -34,7 +34,7 @@ ylabel( 'Road Wheel Angle (rad)', 'Interpreter', 'none' );
 zlabel( 'Lateral Velocity (m/s)', 'Interpreter', 'none' );
 
 % title
-title('Data-Driven Lateral Velocity Fit')
+% title('Data-Driven Lateral Velocity Fit')
 grid on
 
 
