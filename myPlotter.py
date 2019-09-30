@@ -65,7 +65,7 @@ for i in range(len(listdir_)):
 	acc_y_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.y")
 	acc_z_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.z")
 
-	vecvelocity_ndx = returnPltPos(name_,"_vectornav_velTEST_msg.data")
+	vecvelocity_ndx = returnPltPos(name_,"_vectornav_veltest_msg.data")
 	pacvelocity_ndx = returnPltPos(name_,"_as_tx_vehicle_speed_msg.data")
 	yaw_ndx = returnPltPos(name_,"_vehicle_odom2_msg.yaw")
 
@@ -103,7 +103,7 @@ for i in range(len(listdir_)):
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
 
-		# p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="cyan")
+		p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="purple")
 		# p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="green")
 		p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="green")
 		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="black")
