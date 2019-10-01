@@ -1,4 +1,4 @@
-function [fitresult, gof] = roadWheelAngle(speed, lateral_velocity, road_wheel_angles_rad)
+function [fitresult, gof] = road_feedforward(speed, lateral_velocity, road_wheel_angles_rad)
 %CREATEFIT(SPEED,LATERAL_VELOCITY,ROAD_WHEEL_ANGLES_RAD)
 %  Create a fit.
 %
@@ -27,7 +27,7 @@ ft = fittype( 'poly33' );
 % Plot fit with data.
 figure( 'Name', 'Feedforward Road Wheel Angle' );
 h = plot( fitresult, [xData, yData], zData );
-legend( h, 'Surface Fit', 'Emperical Data', 'Location', 'NorthEast', 'Interpreter', 'none' );
+legend( h, 'Surface Fit', 'Empirical Data', 'Location', 'NorthEast', 'Interpreter', 'none' );
 % Label axes
 xlabel( 'Velocity (m/s)', 'Interpreter', 'none' );
 ylabel( 'Lateral Velocity (m/s)', 'Interpreter', 'none' );
