@@ -72,6 +72,14 @@ throttle0mph = 0;
 % 
 % throttle0mph = mean(sort_filtered_data(startmin:endmin,:));
 
+inFile = 'throttle_10_2mph_standard/_vectornav_veltest_msg.data.txt';
+data = load(inFile, '-ascii');
+linear_acceleration = gradient(data(:,2),0.02);
+filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
+sort_filtered_data = sort(filtered_la);
+
+throttle2mph = mean(sort_filtered_data(startmin:endmin,:))
+
 inFile = 'throttle_10_5mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
@@ -472,4 +480,5 @@ throttle1 = 0.01*throttle;
 
 % createFit(speed, throttle, acceleration)
 throttleDynamics(speed, throttle1, acceleration)
+throttleFeedforward(speed, acceleration,  throttle1)
 cftool

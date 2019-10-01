@@ -27,10 +27,10 @@ ft = fittype( 'poly33' );
 % Plot fit with data.
 figure( 'Name', 'Throttle' );
 h = plot( fitresult, [xData, yData], zData );
-legend( h, 'Surface Fit', 'Emperical Data', 'Location', 'NorthEast', 'Interpreter', 'none' );
+legend( h, 'Surface Fit', 'Empirical Data', 'Location', 'NorthEast', 'Interpreter', 'none' );
 % Label axes
 xlabel( 'Velocity (m/s)', 'Interpreter', 'none' );
-ylabel( 'Throttle %', 'Interpreter', 'none' );
+ylabel( 'Throttle', 'Interpreter', 'none' );
 zlabel( 'Longitdunal Acceleration (m/s^{2})');
 
 % Title
