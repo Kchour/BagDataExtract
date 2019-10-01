@@ -80,6 +80,11 @@ for i in range(len(listdir_)):
 	linear_acc_cmd_ndx  = returnPltPos(name_,"_desired_acceleration_msg.data")
 	linear_vel_cmd_ndx = returnPltPos(name_,"_desired_velocity_msg.data")
 
+	lateral_acc_imu = np.array(data_[acc_y_ndx][:,1])
+	lateral_acc_imu_filter = np.array(scipy.signal.savgol_filter(lateral_acc_imu, 101,3))
+	lateral_acc_imu_time = np.array(data_[acc_y_ndx][:,0])
+
+	lateral_acc_imu_filter_ndx = np.column_stack((lateral_acc_imu_time, lateral_acc_imu_filter))
 
 	linear_acc = np.gradient(data_[vecvelocity_ndx][:,1],0.02)
 	linear_acc_filter  = np.array(scipy.signal.savgol_filter(linear_acc, 51,3))
@@ -106,11 +111,12 @@ for i in range(len(listdir_)):
 		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity",line_width=2, line_color="blue")
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="red")
 
-		p3.line(data_[linear_acc_cmd_ndx][:,0], data_[linear_acc_cmd_ndx][:,1], legend="Desired Acceleration",line_width=2, line_color="black")
-		p3.line(data_[linear_vel_cmd_ndx][:,0], data_[linear_vel_cmd_ndx][:,1], legend="Desired Velocity",line_width=2, line_color="purple")
+		# p3.line(data_[linear_acc_cmd_ndx][:,0], data_[linear_acc_cmd_ndx][:,1], legend="Desired Acceleration",line_width=2, line_color="black")
+		# p3.line(data_[linear_vel_cmd_ndx][:,0], data_[linear_vel_cmd_ndx][:,1], legend="Desired Velocity",line_width=2, line_color="purple")
 
 
 		p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="green")
+		p3.line(lateral_acc_imu_filter_ndx[:,0], lateral_acc_imu_filter_ndx[:,1], legend="Filtered Lateral Acceleration",line_width=2, line_color="purple")
 		# p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="blue")
 		# p3.line(data_[manualthrottle_ndx][:,0], data_[manualthrottle_ndx][:,1], legend="Manual Throttle",line_width=2, line_color="blue")
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="cyan")
