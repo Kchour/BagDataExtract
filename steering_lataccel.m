@@ -466,10 +466,10 @@ steering_wheel_angles = [sw_450, sw_360, sw_270, sw_180, sw_90, sw90, sw180, sw2
 
 steering_wheel_angles_rad = pi/180 * steering_wheel_angles;
 
-road_wheel_angles_rad = steering_wheel_angles_rad/12.5;
-road_wheel_angles_deg = steering_wheel_angles/12.5;
+road_wheel_angles_rad = steerg_wheel_angles/12.5;
 
-lateralDynamics (speed, road_wheel_angles_rad, lateral_acceleration)
+lateing_wheel_angles_rad/12.5;
+road_wheel_angles_deg = steerinralDynamics (speed, road_wheel_angles_rad, lateral_acceleration)
 lateralVelocity (speed, road_wheel_angles_rad, lateral_velocity)
-road_feedforward (speed, lateral_velocity, road_wheel_angles_rad)
+road_feedforward (speed, lateral_acceleration, road_wheel_angles_rad)
 cftool

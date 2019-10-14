@@ -1,4 +1,4 @@
-function [fitresult, gof] = road_feedforward(speed, lateral_velocity, road_wheel_angles_rad)
+function [fitresult, gof] = road_feedforward(speed, lateral_acceleration, road_wheel_angles_rad)
 %CREATEFIT(SPEED,LATERAL_VELOCITY,ROAD_WHEEL_ANGLES_RAD)
 %  Create a fit.
 %
@@ -16,7 +16,7 @@ function [fitresult, gof] = road_feedforward(speed, lateral_velocity, road_wheel
 
 
 %% Fit: 'untitled fit 1'.
-[xData, yData, zData] = prepareSurfaceData( speed, lateral_velocity, road_wheel_angles_rad );
+[xData, yData, zData] = prepareSurfaceData( speed, lateral_acceleration, road_wheel_angles_rad );
 
 % Set up fittype and options.
 ft = fittype( 'poly33' );
@@ -30,7 +30,7 @@ h = plot( fitresult, [xData, yData], zData );
 legend( h, 'Surface Fit', 'Empirical Data', 'Location', 'NorthEast', 'Interpreter', 'none' );
 % Label axes
 xlabel( 'Velocity (m/s)', 'Interpreter', 'none' );
-ylabel( 'Lateral Velocity (m/s)', 'Interpreter', 'none' );
+ylabel( 'Lateral Acceleration (m/s^{2})');
 zlabel( 'Road Wheel Angle (rad)', 'Interpreter', 'none' );
 
 % title
