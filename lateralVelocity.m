@@ -31,7 +31,7 @@ legend( h, 'Surface Fit', 'Empirical Data', 'Location', 'NorthEast', 'Interprete
 % Label axes
 xlabel( 'Velocity (m/s)', 'Interpreter', 'none' );
 ylabel( 'Road Wheel Angle (rad)', 'Interpreter', 'none' );
-zlabel( 'Lateral Velocity (m/s)', 'Interpreter', 'none' );
+zlabel( 'Angular Velocity (rad/s)', 'Interpreter', 'none' );
 
 % title
 % title('Data-Driven Lateral Velocity Fit')
