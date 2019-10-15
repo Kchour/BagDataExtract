@@ -1059,5 +1059,5 @@ input = [ brake100, brake90, brake80, brake70, brake60, brake50, brake40, brake3
           throttle10, throttle20, throttle30, throttle40, throttle50, throttle60, throttle70]; 
 input1 = input*0.01;
 
-% createFit(speed, throttle, acceleration)
+%createFit(speed, input1, acceleration)
 cftool
