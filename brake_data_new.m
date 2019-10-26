@@ -638,7 +638,7 @@ brake80 = -80*ones(size(acceleration_brake80));
 brake90 = -90*ones(size(acceleration_brake90));
 brake100 = -100*ones(size(acceleration_brake100));
 
-brake = [brake0, brake10, brake30, brake40 brake50, brake60, brake70, brake80, brake90, brake100];
+brake = -[brake0, brake10, brake30, brake40 brake50, brake60, brake70, brake80, brake90, brake100];
 brake1 = 0.01*brake;
 
 
@@ -669,6 +669,7 @@ brake1 = 0.01*brake;
 % createFit(speed, throttle, acceleration)
 
 brakeDynamics(speed, brake1, acceleration)
+brakeDynamics_new(speed, brake1, acceleration)
 brakeFeedforward(speed, acceleration, brake1)
 cftool
 
