@@ -441,6 +441,41 @@ legend('450° steering', '360° steering', '270° steering', '180° steering', '
        '-90° steering', '-180° steering', '-270° steering', '-360° steering', '-450° steering')
 
    
+%% If you want to add 0 vel and steering
+velocity_450 = [0, velocity_450];
+velocity_360 = [0, velocity_360];
+velocity_270 = [0, velocity_270];
+velocity_180 = [0, velocity_180];
+velocity_90 = [0, velocity_90];
+velocity90 = [0, velocity90];
+velocity180 = [0, velocity180];
+velocity270 = [0, velocity270];
+velocity360 = [0, velocity360];
+velocity450 = [0, velocity450];
+
+steering_450 = [0, steering_450];
+steering_360 = [0, steering_360];
+steering_270 = [0, steering_270];
+steering_180 = [0, steering_180];
+steering_90 = [0, steering_90];
+steering90 = [0, steering90];
+steering180 = [0, steering180];
+steering270= [0, steering270];
+steering360 = [0, steering360];
+steering450 = [0, steering450];
+
+lat_vel_450 = [0, lat_vel_450];
+lat_vel_360 = [0, lat_vel_360];
+lat_vel_270 = [0, lat_vel_270];
+lat_vel_180 = [0, lat_vel_180];
+lat_vel_90 = [0, lat_vel_90];
+lat_vel90 = [0, lat_vel90];
+lat_vel180 = [0, lat_vel180];
+lat_vel270 = [0, lat_vel270];
+lat_vel360 = [0, lat_vel360];
+lat_vel450 = [0, lat_vel450];
+
+   
 %% 3D Plotting Stuff
 speed = [velocity_450, velocity_360, velocity_270, velocity_180, velocity_90,... 
          velocity90, velocity180, velocity270, velocity360, velocity450];
