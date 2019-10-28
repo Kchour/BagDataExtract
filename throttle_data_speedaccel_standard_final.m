@@ -114,33 +114,29 @@ inFile = 'throttle_20_5mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle5mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle5mph = mean(filtered_la(1025:1030,:));
 
 inFile = 'throttle_20_10mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle10mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle10mph = mean(filtered_la(1482:1487,:));
 
 inFile = 'throttle_20_15mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle15mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle15mph = mean(filtered_la(1349:1354,:));
 
 inFile = 'throttle_20_20mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle20mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle20mph = mean(filtered_la(1318:1323,:))
 
 inFile = 'throttle_20_25mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
@@ -148,7 +144,7 @@ linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
 sort_filtered_data = sort(filtered_la);
 
-throttle25mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle25mph = mean(filtered_la(1880:1885,:))
 
 acceleration20 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
@@ -552,7 +548,7 @@ filtered_data = gradient(data(:,2),0.02);
 y = sgolayfilt(filtered_data(:,1),order,framelen);
 
 vel5 = max(data(:,2));
-brake5mph = mean(y(222:227,:))
+brake5mph = mean(y(222:227,:));
 
 inFile = 'brake_30_10mph_4/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
@@ -1059,5 +1055,5 @@ input = [ brake100, brake90, brake80, brake70, brake60, brake50, brake40, brake3
           throttle10, throttle20, throttle30, throttle40, throttle50, throttle60, throttle70]; 
 input1 = input*0.01;
 
-%createFit(speed, input1, acceleration)
+dynamics(speed, input1, acceleration)
 cftool
