@@ -16,27 +16,20 @@ i03 =  0;
 
 input_ff = i00 + i10*vel + i01*acc + i20*vel^2 + i11*vel*acc + i02*acc^2 + ...
       i30*vel^3 + i21*vel^2*acc + i12*vel*acc^2 + i03*acc^3;
-u = input_ff
+in = input_ff;
 
-if u < -1
-    u = -1
-elseif u > 0.7
-    u = 0.7
+if in < -1
+    in = -1
+elseif in > 0.7
+    in = 0.7
 end
 
-p00 = -0.4256;
-p10 = -0.3994;
-p01 = 2.293;
-p20 = 0.0547;
-p11 = 0.1635;
-p02 = 4.628;
-p30 = -0.001896;
-p21 = -0.02716;
-p12 = -0.4266;
-p03 = 4.893;
+in = 0.4
+vx = 10.5
 
 
-acc = p00 + p10*vel + p01*u + p20*vel^2 + p11*vel*u + p02*u^2 + ...
-      p30*vel^3 + p21*vel^2*u + p12*vel*u^2 + p03*u^3
+vxdot = -0.6062*vx + 1.937*in + 0.08625*vx^2 ...
+    +0.2565*vx*in + 4.283*in^2 -0.00339*vx^3 ...
+    -0.03248*vx^2*in -0.3862*vx*in^2 + 4.878*in^3
   
   
