@@ -136,7 +136,7 @@ data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
 
-throttle20mph = mean(filtered_la(1318:1323,:))
+throttle20mph = mean(filtered_la(1318:1323,:));
 
 inFile = 'throttle_20_25mph_standard/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
@@ -144,7 +144,7 @@ linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
 sort_filtered_data = sort(filtered_la);
 
-throttle25mph = mean(filtered_la(1880:1885,:))
+throttle25mph = mean(filtered_la(1880:1885,:));
 
 acceleration20 = [throttle5mph, throttle10mph, throttle15mph, throttle20mph, throttle25mph];
 
