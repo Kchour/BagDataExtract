@@ -70,7 +70,7 @@ long_file = 'lateral180deg_25ms/_vehicle_odom2_msg.x.txt';
 long_data = load(long_file, '-ascii');
 radius25 = (max(long_data(:,2)) - min(long_data(:,2))) * 0.5 -0.2;  % there is an error of approximately 0.2
 
-steering25ms = vel_ave25*vel_ave25/radius25;
+steering25ms = vel_ave25*vel_ave25/radius25
 
 vel_file = 'lateral180deg_4ms/_vectornav_veltest_msg.data.txt';
 vel_data = load(vel_file, '-ascii');

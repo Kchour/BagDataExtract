@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('feedforward3ms_0ms.bag')
+bag = rosbag.Bag('lateral90deg_4ms.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()
