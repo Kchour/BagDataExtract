@@ -1056,4 +1056,5 @@ input = [ brake100, brake90, brake80, brake70, brake60, brake50, brake40, brake3
 input1 = input*0.01;
 
 dynamics(speed, input1, acceleration)
+combined_inverse(speed, acceleration, input1)
 cftool
