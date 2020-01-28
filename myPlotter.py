@@ -57,8 +57,8 @@ for i in range(len(listdir_)):
 	
 	name_,data_ = storeProccessed(listdir_,i)
 
-	long_ndx = returnPltPos(name_,"_vehicle_odom2_msg.x")
-	lat_ndx = returnPltPos(name_,"_vehicle_odom2_msg.y")
+	long_ndx = returnPltPos(name_,"_vectornav_gps_msg.LLA.x")
+	lat_ndx = returnPltPos(name_,"_vectornav_gps_msg.LLA.y")
 	height_ndx = returnPltPos(name_, "_vectornav_gps_msg.LLA.z")
 
 	acc_x_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.x")
@@ -89,7 +89,10 @@ for i in range(len(listdir_)):
 		output_file(listdir_[i][2:-1]+".html")
 
 		p1 = figure(title=listdir_[i], x_axis_label='longitude (m)', y_axis_label='latitude (m)')
-		p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
+		# p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
+		p1.line(data_[long_ndx][:,1], data_[lat_ndx][:,1],  legend="Path Driven",line_width=2, line_color="red")
+
+
 
 		p2 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='acceleration (m/s^2)')
 		p2.line(data_[acc_x_ndx][:,0], data_[acc_x_ndx][:,1], legend="Acceleration X",line_width=2, line_color="red")
@@ -104,7 +107,7 @@ for i in range(len(listdir_)):
 
 		# p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="cyan")
 		# p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="green")
-		p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="red")
+		# p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="red")
 		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="black")
 
 		# p4 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='throttle')
@@ -112,7 +115,7 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		curr = gridplot([[ p3]])
+		curr = gridplot([[ p1, p3]])
 		show(curr)
 
 	except Exception:
