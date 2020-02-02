@@ -66,6 +66,8 @@ for i in range(len(listdir_)):
 	acc_z_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.z")
 
 	vecvelocity_ndx = returnPltPos(name_,"_vectornav_veltest_msg.data")
+	vecvelocity2_ndx = returnPltPos(name_,"_vectornav_veltest2_msg.data")
+	vecvelocityY_ndx = returnPltPos(name_,"_vectornav_veltestY_msg.data")
 	pacvelocity_ndx = returnPltPos(name_,"_as_tx_vehicle_speed_msg.data")
 	yaw_ndx = returnPltPos(name_,"_vehicle_odom2_msg.yaw")
 
@@ -97,7 +99,9 @@ for i in range(len(listdir_)):
 		p2.line(data_[acc_z_ndx][:,0], data_[acc_z_ndx][:,1], legend="Acceleration Z",line_width=2, line_color="green")
 
 		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or acceleration (m/s^2)')
-		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity",line_width=2, line_color="red")
+		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity Square",line_width=2, line_color="red")
+		p3.line(data_[vecvelocity2_ndx][:,0], data_[vecvelocity2_ndx][:,1], legend="VectorNav Velocity Sin",line_width=1, line_color="black")
+		p3.line(data_[vecvelocityY_ndx][:,0], data_[vecvelocityY_ndx][:,1], legend="VectorNav Velocity Y",line_width=2, line_color="purple")
 		# p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
 
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
@@ -113,7 +117,7 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		curr = gridplot([[ p3]])
+		curr = gridplot([[ p1, p3]])
 		show(curr)
 
 	except Exception:
