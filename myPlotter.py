@@ -48,7 +48,7 @@ def returnPltPos(name_,desired):
 # with open("odom_waypoints.dat") as waypoints:
 # 	waypoints_data = waypoints.read()
 
-waypoints_data = np.loadtxt("sine.dat",delimiter=',')
+waypoints_data = np.loadtxt("track3.dat",delimiter=',')
 #pdb.set_trace()
 
 
@@ -98,7 +98,7 @@ for i in range(len(listdir_)):
 		output_file(listdir_[i][2:-1]+".html")
 
 		p1 = figure(title=listdir_[i], x_axis_label='utm Easting (m)', y_axis_label='utm Northing (m)')
-		p1.line(data_[long_ndx][0:3100,1]- waypoints_data[0,0], data_[lat_ndx][0:3100,1] - waypoints_data[0,1],legend="Path Driven",line_width=2, line_color="red")
+		p1.line(data_[long_ndx][:,1]- waypoints_data[0,0], data_[lat_ndx][:,1] - waypoints_data[0,1],legend="Path Driven",line_width=2, line_color="red")
 		p1.line(waypoints_data[:,0] - waypoints_data[0,0], waypoints_data[:,1] - waypoints_data[0,1] ,legend="Waypoints",line_width=2, line_color="blue")
 		p1.xaxis.axis_label_text_font_size = "18pt"
 		p1.yaxis.axis_label_text_font_size = "18pt"
@@ -114,7 +114,9 @@ for i in range(len(listdir_)):
 
 		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='Velocity (m/s) or throttle input')
 		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="Velocity",line_width=2, line_color="blue")
-		p3.line([2.7, 53],[5, 5], legend="Desired Velocity",line_width=2, line_color="black")
+		p3.line(data_[linear_vel_cmd_ndx][:,0], data_[linear_vel_cmd_ndx][:,1], legend="Desired Velocity",line_width=2, line_color="black")
+
+		# p3.line([2.7, 53],[5, 5], legend="Desired Velocity",line_width=2, line_color="black")
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
 		# p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="black")
 		p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="red")
