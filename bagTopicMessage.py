@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('throttle_10_0mph.bag')
+bag = rosbag.Bag('connor_track3_3.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()
