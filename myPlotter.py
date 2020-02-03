@@ -94,6 +94,12 @@ for i in range(len(listdir_)):
 	linear_acc_ndx = np.column_stack((linear_acc_time, linear_acc))
 	linear_acc_filter_ndx = np.column_stack((linear_acc_time, linear_acc_filter))
 
+	lateral_acc_filter  = np.array(scipy.signal.savgol_filter(data_[acc_y_ndx][:,1], 51,3))
+	lateral_acc_time = np.array(data_[acc_y_ndx][:,0])
+	lateral_acc_filter_ndx = np.column_stack((lateral_acc_time, lateral_acc_filter))	
+
+	lateral_acc_ndx = returnPltPos(name_,"_lateral_acceleration_msg.data")
+
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
 
@@ -136,6 +142,8 @@ for i in range(len(listdir_)):
 		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s) or steering input (rad)')
 		p4.line(data_[ang_vel_z_ndx][:,0], -data_[ang_vel_z_ndx][:,1], legend="Yaw Rate",line_width=2, line_color="red")
 		p4.line(data_[yawrate_cmd_ndx][:,0], data_[yawrate_cmd_ndx][:,1], legend="Desired Yaw Rate",line_width=2, line_color="black")
+		p4.line(data_[lateral_acc_ndx][:,0], data_[lateral_acc_ndx][:,1], legend="Lateral Acceleration calculated",line_width=2, line_color="green")
+		p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration imu",line_width=2, line_color="purple")
 		p4.line(data_[steer_ndx][:,0], data_[steer_ndx][:,1], legend="Steering Command",line_width=2, line_color="blue")
 
 		p4.xaxis.axis_label_text_font_size = "18pt"
