@@ -9,6 +9,7 @@ from bokeh.models import ColumnDataSource, RangeTool
 from bokeh.plotting import figure, gridplot, output_file
 import numpy as np
 import scipy.signal
+from scipy.spatial import distance
 
 # GRAB DIRECTORIES WITH processed.processed
 listdir_ = []
@@ -48,7 +49,7 @@ def returnPltPos(name_,desired):
 # with open("odom_waypoints.dat") as waypoints:
 # 	waypoints_data = waypoints.read()
 
-waypoints_data = np.loadtxt("track3.dat",delimiter=',')
+waypoints_data = np.loadtxt("on_road.dat",delimiter=',')
 #pdb.set_trace()
 
 
@@ -99,6 +100,10 @@ for i in range(len(listdir_)):
 	lateral_acc_filter_ndx = np.column_stack((lateral_acc_time, lateral_acc_filter))	
 
 	lateral_acc_ndx = returnPltPos(name_,"_lateral_acceleration_msg.data")
+
+	path_driven = np.column_stack((data_[long_ndx][:,1],data_[lat_ndx][:,1]))
+
+	lateral_err = distance.cdist(path_driven, waypoints_data).min(axis=1)
 
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
@@ -155,7 +160,10 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		curr = gridplot([[p1, p3, p4]])
+		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error')
+		p5.line(data_[long_ndx][:,0], lateral_err, legend="Lateral Error",line_width=2, line_color="purple")
+
+		curr = gridplot([[p1, p3, p4, p5]])
 		show(curr)
 
 	except Exception:
