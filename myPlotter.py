@@ -9,6 +9,7 @@ from bokeh.models import ColumnDataSource, RangeTool
 from bokeh.plotting import figure, gridplot, output_file
 import numpy as np
 import scipy.signal
+from scipy.spatial import distance
 
 # GRAB DIRECTORIES WITH processed.processed
 listdir_ = []
@@ -85,7 +86,6 @@ for i in range(len(listdir_)):
 	steermanual_ndx = returnPltPos(name_,"_parsed_tx_steer_rpt_msg.manual_input")
 	steerout_ndx = returnPltPos(name_,"_parsed_tx_steer_rpt_msg.output")
 
-
 	linear_acc = np.gradient(data_[vecvelocity_ndx][:,1],0.02)
 	linear_acc_filter  = np.array(scipy.signal.savgol_filter(linear_acc, 51,3))
 
@@ -97,6 +97,11 @@ for i in range(len(listdir_)):
 	lateral_acc_time = np.array(data_[acc_y_ndx][:,0])
 	lateral_acc_filter_ndx = np.column_stack((lateral_acc_time, lateral_acc_filter))	
 
+	path_driven = np.column_stack((data_[long_ndx][:,1],data_[lat_ndx][:,1]))
+
+	lateral_err = distance.cdist(path_driven, waypoints_data).min(axis=1)
+
+	# print(lateral_err)
 
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
@@ -105,8 +110,6 @@ for i in range(len(listdir_)):
 		p1.line(waypoints_data[:,0] - waypoints_data[0,0], waypoints_data[:,1] - waypoints_data[0,1] ,legend="Waypoints",line_width=2, line_color="blue")
 		p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
 		# p1.line(data_[long_ndx][:,1], data_[lat_ndx][:,1],  legend="Path Driven",line_width=2, line_color="red")
-
-
 
 		p2 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='acceleration (m/s^2)')
 		p2.line(data_[acc_x_ndx][:,0], data_[acc_x_ndx][:,1], legend="Acceleration X",line_width=2, line_color="red")
@@ -122,6 +125,7 @@ for i in range(len(listdir_)):
 
 		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s) or steering input (rad)')
 		p4.line(data_[ang_vel_z_ndx][:,0], -data_[ang_vel_z_ndx][:,1], legend="Yaw Rate",line_width=2, line_color="red")
+		p4.line(data_[ang_vel_y_ndx][:,0], data_[ang_vel_x_ndx][:,1], legend="Roll Rate",line_width=2, line_color="black")
 		# p4.line(data_[acc_y_ndx][:,0], data_[acc_y_ndx][:,1], legend="Lateral Acceleration",line_width=2, line_color="green")
 		p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration",line_width=2, line_color="green")
 		# p4.line(data_[yawrate_cmd_ndx][:,0], data_[yawrate_cmd_ndx][:,1], legend="Desired Yaw Rate",line_width=2, line_color="black")
@@ -132,7 +136,10 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		curr = gridplot([[ p1, p3, p4]])
+		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error')
+		p5.line(data_[long_ndx][:,0], lateral_err, legend="Lateral Error",line_width=2, line_color="purple")
+
+		curr = gridplot([[ p1, p3, p4, p5]])
 		show(curr)
 
 	except Exception:
