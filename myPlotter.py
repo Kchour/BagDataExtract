@@ -121,11 +121,11 @@ for i in range(len(listdir_)):
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
 		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="black")
 		p3.line(data_[throttleout_ndx][:,0], data_[throttlemanual_ndx][:,1], legend="Throttle Output",line_width=2, line_color="red")
-		p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="green")
+		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="green")
 
-		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s) or steering input (rad)')
+		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s), lateral acceleration (m/s^2), or steering command (rad)')
 		p4.line(data_[ang_vel_z_ndx][:,0], -data_[ang_vel_z_ndx][:,1], legend="Yaw Rate",line_width=2, line_color="red")
-		p4.line(data_[ang_vel_y_ndx][:,0], data_[ang_vel_x_ndx][:,1], legend="Roll Rate",line_width=2, line_color="black")
+		# p4.line(data_[ang_vel_y_ndx][:,0], data_[ang_vel_x_ndx][:,1], legend="Roll Rate",line_width=2, line_color="black")
 		# p4.line(data_[acc_y_ndx][:,0], data_[acc_y_ndx][:,1], legend="Lateral Acceleration",line_width=2, line_color="green")
 		p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration",line_width=2, line_color="green")
 		# p4.line(data_[yawrate_cmd_ndx][:,0], data_[yawrate_cmd_ndx][:,1], legend="Desired Yaw Rate",line_width=2, line_color="black")
@@ -136,7 +136,7 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error')
+		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error (m)')
 		p5.line(data_[long_ndx][:,0], lateral_err, legend="Lateral Error",line_width=2, line_color="purple")
 
 		curr = gridplot([[ p1, p3, p4, p5]])
