@@ -140,33 +140,29 @@ inFile = 'throttle_20_5mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle5mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle5mph = mean(filtered_la(493:498,:));
 
 inFile = 'throttle_20_5mph_2/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle5mph_2 = mean(sort_filtered_data(startmin:endmin,:));
+throttle5mph_2 = mean(filtered_la(515:520,:));
 
 inFile = 'throttle_20_5mph_3/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle5mph_3 = mean(sort_filtered_data(startmin:endmin,:));
+throttle5mph_3 = mean(filtered_la(431:436,:));
 
 inFile = 'throttle_20_5mph_4/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle5mph_4 = mean(sort_filtered_data(startmin:endmin,:));
+throttle5mph_4 = mean(filtered_la(648:653,:));
 
 throttle5mph_ave = mean([throttle5mph, throttle5mph_2, throttle5mph_3, throttle5mph_4]);
 
@@ -175,33 +171,29 @@ inFile = 'throttle_20_10mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle10mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle10mph = mean(filtered_la(554:559,:));
 
 inFile = 'throttle_20_10mph_2/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle10mph_2 = mean(sort_filtered_data(startmin:endmin,:));
+throttle10mph_2 = mean(filtered_la(714:719,:));
 
 inFile = 'throttle_20_10mph_3/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle10mph_3 = mean(sort_filtered_data(startmin:endmin,:));
+throttle10mph_3 = mean(filtered_la(659:664,:));
 
 inFile = 'throttle_20_10mph_4/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle10mph_4 = mean(sort_filtered_data(startmin:endmin,:));
+throttle10mph_4 = mean(filtered_la(676:681,:));
 
 throttle10mph_ave = mean([throttle10mph, throttle10mph_2, throttle10mph_3, throttle10mph_4]);
 
@@ -210,33 +202,29 @@ inFile = 'throttle_20_15mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle15mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle15mph = mean(filtered_la(875:880,:));
 
 inFile = 'throttle_20_15mph_2/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle15mph_2 = mean(sort_filtered_data(startmin:endmin,:));
+throttle15mph_2 = mean(filtered_la(766:771,:));
 
 inFile = 'throttle_20_15mph_3/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle15mph_3 = mean(sort_filtered_data(startmin:endmin,:));
+throttle15mph_3 = mean(filtered_la(810:815,:));
 
 inFile = 'throttle_20_15mph_4/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle15mph_4 = mean(sort_filtered_data(startmin:endmin,:));
+throttle15mph_4 = mean(filtered_la(878:883,:));
 
 throttle15mph_ave = mean([throttle15mph, throttle15mph_2, throttle15mph_3, throttle15mph_4]);
 
@@ -245,25 +233,22 @@ inFile = 'throttle_20_20mph/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle20mph = mean(sort_filtered_data(startmin:endmin,:));
+throttle20mph = mean(filtered_la(833:838,:));
 
 inFile = 'throttle_20_20mph_2/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
 filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
 
-throttle20mph_2 = mean(sort_filtered_data(startmin:endmin,:));
+throttle20mph_2 = mean(filtered_la(830:835,:));
 
 inFile = 'throttle_20_20mph_3/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
 linear_acceleration = gradient(data(:,2),0.02);
-filtered_la = sgolayfilt(linear_acceleration(:,1),order,framelen);
-sort_filtered_data = sort(filtered_la);
+filtered_la2 = sgolayfilt(linear_acceleration(:,1),order,framelen);
 
-throttle20mph_3 = mean(sort_filtered_data(startmin:endmin,:));
+throttle20mph_3 = mean(filtered_la(905:910,:));
 
 inFile = 'throttle_20_20mph_4/_vectornav_veltest_msg.data.txt';
 data = load(inFile, '-ascii');
