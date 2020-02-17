@@ -10,6 +10,7 @@ from bokeh.plotting import figure, gridplot, output_file
 import numpy as np
 import scipy.signal
 from scipy.spatial import distance
+# from scipy import spatial
 
 # GRAB DIRECTORIES WITH processed.processed
 listdir_ = []
@@ -49,7 +50,7 @@ def returnPltPos(name_,desired):
 # with open("odom_waypoints.dat") as waypoints:
 # 	waypoints_data = waypoints.read()
 
-waypoints_data = np.loadtxt("on_road.dat",delimiter=',')
+waypoints_data = np.loadtxt("on_road_2.dat",delimiter=',')
 #pdb.set_trace()
 
 
@@ -103,7 +104,43 @@ for i in range(len(listdir_)):
 
 	path_driven = np.column_stack((data_[long_ndx][:,1],data_[lat_ndx][:,1]))
 
-	lateral_err = distance.cdist(path_driven, waypoints_data).min(axis=1)
+	mytree = scipy.spatial.cKDTree(waypoints_data)
+	dist, indexes = mytree.query(path_driven)
+
+	# dist, indexes = scipy.spatial.KDTree(waypoints_data).query(path_driven)
+
+	print(np.shape(indexes))
+
+	numrows, numcols = np.shape(waypoints_data)
+	numrows2, numcols2 = np.shape(path_driven)
+
+	print(np.shape(waypoints_data))
+
+	print(waypoints_data[indexes])
+	point1 = waypoints_data[indexes]
+
+	lateral_err1 = np.zeros(numrows2,)
+
+	# for j in indexes:
+	# 	point1 = waypoints_data[indexes[j]]
+
+	# 	if (indexes[j] == numrows):
+	# 		point2 = waypoints_data[indexes[j]-1]
+	# 	else:
+	# 		point2 = waypoints_data[indexes[j]+1]
+
+	# 	slope = (point2[1] - point1[1]) / (point2[0] - point1[0]+0.00000000005)
+	# 	constant = point1[1] - slope*point1[0]
+
+	# 	lateral_err1[j] = np.abs(path_driven[j,1] - slope*path_driven[j,0] - constant) / ((1+slope**2)**0.5) 
+	# 	#print(lateral_err1[j])
+	
+	# lateral_err = distance.cdist(path_driven, waypoints_data).min(axis=1)
+	lateral_err1 = dist
+	# print(np.mean(lateral_err))
+
+	lateral_err1 = np.array(scipy.signal.savgol_filter(lateral_err1, 51,3))
+	# lateral_err = np.column_stack((np.array(data_[long_ndx][:,0]), lateral_err2))
 
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
@@ -161,7 +198,7 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
 		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error')
-		p5.line(data_[long_ndx][:,0], lateral_err, legend="Lateral Error",line_width=2, line_color="purple")
+		p5.line(data_[long_ndx][:,0], lateral_err1, legend="Lateral Error",line_width=2, line_color="purple")
 
 		curr = gridplot([[p1, p3, p4, p5]])
 		show(curr)
