@@ -1,6 +1,6 @@
 import rosbag
 import pdb
-bag = rosbag.Bag('on_road1.bag')
+bag = rosbag.Bag('track3.bag')
 types = []
 topics_ = bag.get_type_and_topic_info()[1].keys()
 #pdb.set_trace()

@@ -138,7 +138,7 @@ for i in range(len(listdir_)):
 		lateral_err1[j] = np.abs(path_driven[j,1] - slope*path_driven[j,0] - constant) / ((1+slope**2)**0.5) 
 		#print(lateral_err1[j])
 	
-	lateral_err1 = distance.cdist(path_driven, waypoints_data).min(axis=1)
+	# lateral_err1 = distance.cdist(path_driven, waypoints_data).min(axis=1)
 	# lateral_err1 = dist
 	# print(np.mean(lateral_err))
 
