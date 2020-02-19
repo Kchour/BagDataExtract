@@ -50,7 +50,7 @@ def returnPltPos(name_,desired):
 # with open("odom_waypoints.dat") as waypoints:
 # 	waypoints_data = waypoints.read()
 
-waypoints_data = np.loadtxt("on_road_2.dat",delimiter=',')
+waypoints_data = np.loadtxt("rainy_track2.dat",delimiter=',')
 #pdb.set_trace()
 
 
@@ -109,14 +109,14 @@ for i in range(len(listdir_)):
 
 	# dist, indexes = scipy.spatial.KDTree(waypoints_data).query(path_driven)
 
-	print(np.shape(indexes))
+	# print(np.shape(indexes))
 
 	numrows, numcols = np.shape(waypoints_data)
 	numrows2, numcols2 = np.shape(path_driven)
 
-	print(np.shape(waypoints_data))
+	# print(np.shape(waypoints_data))
 
-	print(waypoints_data[indexes])
+	# print(waypoints_data[indexes])
 	point1 = waypoints_data[indexes]
 
 	lateral_err1 = np.zeros(numrows2,)
@@ -135,11 +135,13 @@ for i in range(len(listdir_)):
 	# 	lateral_err1[j] = np.abs(path_driven[j,1] - slope*path_driven[j,0] - constant) / ((1+slope**2)**0.5) 
 	# 	#print(lateral_err1[j])
 	
-	# lateral_err = distance.cdist(path_driven, waypoints_data).min(axis=1)
-	lateral_err1 = dist
-	# print(np.mean(lateral_err))
+	lateral_err1 = distance.cdist(path_driven, waypoints_data).min(axis=1)
+	#lateral_err1 = dist
+	ave_err = np.mean(lateral_err1)
+	print(ave_err)
+	print(np.size(lateral_err1))
 
-	lateral_err1 = np.array(scipy.signal.savgol_filter(lateral_err1, 51,3))
+	#lateral_err1 = np.array(scipy.signal.savgol_filter(lateral_err1, 51,3))
 	# lateral_err = np.column_stack((np.array(data_[long_ndx][:,0]), lateral_err2))
 
 	try:	
@@ -184,8 +186,8 @@ for i in range(len(listdir_)):
 		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s) or steering input (rad)')
 		p4.line(data_[ang_vel_z_ndx][:,0], -data_[ang_vel_z_ndx][:,1], legend="Yaw Rate",line_width=2, line_color="red")
 		p4.line(data_[yawrate_cmd_ndx][:,0], data_[yawrate_cmd_ndx][:,1], legend="Desired Yaw Rate",line_width=2, line_color="black")
-		p4.line(data_[lateral_acc_ndx][:,0], data_[lateral_acc_ndx][:,1], legend="Lateral Acceleration calculated",line_width=2, line_color="green")
-		p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration imu",line_width=2, line_color="purple")
+		# p4.line(data_[lateral_acc_ndx][:,0], data_[lateral_acc_ndx][:,1], legend="Lateral Acceleration calculated",line_width=2, line_color="green")
+		# p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration imu",line_width=2, line_color="purple")
 		p4.line(data_[steer_ndx][:,0], data_[steer_ndx][:,1], legend="Steering Command",line_width=2, line_color="blue")
 
 		p4.xaxis.axis_label_text_font_size = "18pt"
@@ -197,8 +199,13 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
-		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='lateral error')
-		p5.line(data_[long_ndx][:,0], lateral_err1, legend="Lateral Error",line_width=2, line_color="purple")
+		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='Distance (m)')
+		p5.line(data_[long_ndx][:,0], lateral_err1[0:16000], legend="Lateral Error",line_width=2, line_color="purple")
+		p5.line(data_[long_ndx][:,0], ave_err, legend="Mean Error",line_width=2, line_color="green")
+
+		p5.xaxis.axis_label_text_font_size = "18pt"
+		p5.yaxis.axis_label_text_font_size = "18pt"
+		p5.legend.label_text_font_size = '16pt'
 
 		curr = gridplot([[p1, p3, p4, p5]])
 		show(curr)
