@@ -140,7 +140,7 @@ for i in range(len(listdir_)):
 	
 	lateral_err1 = distance.cdist(path_driven, waypoints_data).min(axis=1)
 	# lateral_err1 = dist
-	# print(np.mean(lateral_err))
+	print(np.mean(lateral_err1))
 
 	# lateral_err1 = np.array(scipy.signal.savgol_filter(lateral_err1, 51,3))
 	# lateral_err = np.column_stack((np.array(data_[long_ndx][:,0]), lateral_err2))
@@ -187,7 +187,7 @@ for i in range(len(listdir_)):
 		p4 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='angular velocity (rad/s) or steering input (rad)')
 		p4.line(data_[ang_vel_z_ndx][:,0], -data_[ang_vel_z_ndx][:,1], legend="Yaw Rate",line_width=2, line_color="red")
 		p4.line(data_[yawrate_cmd_ndx][:,0], data_[yawrate_cmd_ndx][:,1], legend="Desired Yaw Rate",line_width=2, line_color="black")
-		p4.line(data_[lateral_acc_ndx][:,0], data_[lateral_acc_ndx][:,1], legend="Lateral Acceleration calculated",line_width=2, line_color="green")
+		# p4.line(data_[lateral_acc_ndx][:,0], data_[lateral_acc_ndx][:,1], legend="Lateral Acceleration calculated",line_width=2, line_color="green")
 		p4.line(lateral_acc_filter_ndx[:,0], -lateral_acc_filter_ndx[:,1], legend="Lateral Acceleration imu",line_width=2, line_color="purple")
 		p4.line(data_[steer_ndx][:,0], data_[steer_ndx][:,1], legend="Steering Command",line_width=2, line_color="blue")
 
