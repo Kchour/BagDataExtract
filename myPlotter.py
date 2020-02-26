@@ -50,7 +50,7 @@ def returnPltPos(name_,desired):
 # with open("odom_waypoints.dat") as waypoints:
 # 	waypoints_data = waypoints.read()
 
-waypoints_data = np.loadtxt("rainy_track2.dat",delimiter=',')
+waypoints_data = np.loadtxt("rainy_track3.dat",delimiter=',')
 #pdb.set_trace()
 
 
@@ -138,6 +138,7 @@ for i in range(len(listdir_)):
 	lateral_err1 = distance.cdist(path_driven, waypoints_data).min(axis=1)
 	#lateral_err1 = dist
 	ave_err = np.mean(lateral_err1)
+	max_err = max(lateral_err1)
 	print(ave_err)
 	print(np.size(lateral_err1))
 
@@ -200,8 +201,10 @@ for i in range(len(listdir_)):
 		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
 
 		p5 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='Distance (m)')
-		p5.line(data_[long_ndx][:,0], lateral_err1[0:16000], legend="Lateral Error",line_width=2, line_color="purple")
+		p5.line(data_[long_ndx][:,0], lateral_err1[:], legend="Lateral Error",line_width=2, line_color="purple")
 		p5.line(data_[long_ndx][:,0], ave_err, legend="Mean Error",line_width=2, line_color="green")
+		p5.line(data_[long_ndx][:,0], max_err, legend="Max Error",line_width=2, line_color="red")
+
 
 		p5.xaxis.axis_label_text_font_size = "18pt"
 		p5.yaxis.axis_label_text_font_size = "18pt"
