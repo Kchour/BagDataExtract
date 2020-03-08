@@ -11,14 +11,24 @@ from os import listdir
 import matplotlib.pyplot as plt
 
 #### SPECIFY DESIRED TOPICS AND FIELDS  ####
-desiredTopics = ['/result_t1',
-                 '/result_t2',
-		 '/vehicle/twistfake',
-		 '/vehicle/dbw_enabled']
-desiredFields = [['msg.data'],
-                 ['msg.data'],
-		 ['msg.twist.angular.z'],
-		 ['msg.data']]	#### FOR ARRAYS YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+desiredTopics = ['/info/plan',
+		'/vehicle/odom2',
+		'/info/k',
+		'/info/states']
+desiredFields = [['[i.pose.position.x for i in msg.poses]', '[j.pose.position.y for j in msg.poses]'],
+		 ['msg.x','msg.y'],
+		 ['msg.data'],
+		 ['msg.data[3]', 'msg.data[4]']]	#yaw rate, long vel
+		 	
+
+
+''' FOR ARRAYS, YOU NEED TO SPECIFY EACH ELEMENT SEPARATELY
+    OR USE LIST_COMPREHENSION IF THE ARRAY COMES ALL AT ONCE! 
+    e.g. /info/plan is an geometry_msgs/PoseStamped topic
+
+    for topic, msg, t in bag.read_messages(topics="/info/plan"): 
+	print [i.pose.position.x for i in msg.poses]
+'''
 
 #### ------------------------------------ ####
 
@@ -42,7 +52,14 @@ def readMessages(desiredTopics, desiredFields, bag):
                                 k -=(len(desiredFields[i])- j)
                                 if (len(lists_[k]) < 1):
                                         lists_[k].append(['time',topic+'/'+desiredFields_[k]])
-                                lists_[k].append([t.to_sec()-StartTime,eval(desiredFields[i][j])])
+				# Adding a fix here to "all at once arrays"
+				msg_value = eval(desiredFields[i][j])
+				try:
+					if len(msg_value) > 1:	
+						for p in msg_value:			
+                                			lists_[k].append([t.to_sec()-StartTime,p])
+				except:
+					lists_[k].append([t.to_sec()-StartTime,msg_value])
 
 	lists_ = np.asarray(lists_)
 	return lists_
@@ -65,7 +82,7 @@ def saveProcessed(lists,f):
                                 print "SAVING "+ lists[i][0][1] + " PLEASE WAIT"
                                 if not os.path.exists('./'+f.replace('-','_')[0:-4]):
                                         os.makedirs('./'+f.replace('-','_')[0:-4])
-                                np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:len(lists[i])],delimiter=',',fmt="%f")
+                                np.savetxt('./'+f.replace('-','_')[0:-4]+'/'+lists[i][0][1].replace("/","_")+".txt",lists[i][1:len(lists[i])],delimiter=',',fmt="%f0")
                                 cnt += 1
 				if f == "rntest9_2019-05-27-15-12-53.bag":
 					if i ==3:
@@ -74,6 +91,7 @@ def saveProcessed(lists,f):
                 #np.savetxt('./'+f.replace('-','_')[0:-4]+'/complete.txt',lists,delimiter=',',fmt="%s")
                 print "SAVED ",cnt," Files"
         except Exception as e:
+		pdb.set_trace()
                 print e, "CHECK THE DESIRED TOPICS AND FIELDS AGAIN"
                 pass
 
