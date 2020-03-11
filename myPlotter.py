@@ -65,6 +65,10 @@ for i in range(len(listdir_)):
 	acc_y_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.y")
 	acc_z_ndx = returnPltPos(name_,"_vectornav_imu_msg.Gyro.z")
 
+	ang_vel_x_ndx = returnPltPos(name_,"_vectornav_imu_msg.Accel.x")
+	ang_vel_y_ndx = returnPltPos(name_,"_vectornav_imu_msg.Accel.y")
+	ang_vel_z_ndx = returnPltPos(name_,"_vectornav_imu_msg.Accel.z")
+
 	vecvelocity_ndx = returnPltPos(name_,"_vectornav_veltest_msg.data")
 	vecvelocity2_ndx = returnPltPos(name_,"_vectornav_veltest2_msg.data")
 	vecvelocityY_ndx = returnPltPos(name_,"_vectornav_veltestY_msg.data")
@@ -80,6 +84,18 @@ for i in range(len(listdir_)):
 	throttlerptcom_ndx = returnPltPos(name_,"_parsed_tx_accel_rpt_msg.command")
 	brakeout_ndx = returnPltPos(name_,"_parsed_tx_brake_rpt_msg.command")
 
+	lateral_acc_imu = np.array(data_[acc_y_ndx][:,1])
+	lateral_acc_imu_filter = np.array(scipy.signal.savgol_filter(lateral_acc_imu, 101,3))
+	lateral_acc_imu_time = np.array(data_[acc_y_ndx][:,0])
+
+	lateral_acc_imu_filter_ndx = np.column_stack((lateral_acc_imu_time, lateral_acc_imu_filter))
+
+	ang_vel_z_imu = np.array(data_[ang_vel_z_ndx][:,1])
+	ang_vel_z_imu_filter = np.array(scipy.signal.savgol_filter(ang_vel_z_imu, 51,3))
+	ang_vel_z_imu_time = np.array(data_[ang_vel_z_ndx][:,0])
+
+	ang_vel_z_imu_filter_ndx = np.column_stack((ang_vel_z_imu_time, ang_vel_z_imu_filter))
+
 	linear_acc = np.gradient(data_[vecvelocity_ndx][:,1],0.02)
 	linear_acc_filter  = np.array(scipy.signal.savgol_filter(linear_acc, 51,3))
 
@@ -90,7 +106,7 @@ for i in range(len(listdir_)):
 	try:	
 		output_file(listdir_[i][2:-1]+".html")
 
-		p1 = figure(title=listdir_[i], x_axis_label='longitude (m)', y_axis_label='latitude (m)')
+		p1 = figure(title=listdir_[i], x_axis_label='longitude (m)', y_axis_label='latitude (m)py')
 		p1.line(data_[long_ndx][:,1] - data_[long_ndx][0,1], data_[lat_ndx][:,1] - data_[lat_ndx][0,1],  legend="Path Driven",line_width=2, line_color="red")
 
 		p2 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='acceleration (m/s^2)')
@@ -99,25 +115,30 @@ for i in range(len(listdir_)):
 		p2.line(data_[acc_z_ndx][:,0], data_[acc_z_ndx][:,1], legend="Acceleration Z",line_width=2, line_color="green")
 
 		p3 = figure(title=listdir_[i], x_axis_label='time (sec)', y_axis_label='velocity (m/s) or acceleration (m/s^2)')
-		p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity Square",line_width=2, line_color="red")
+		# p3.line(data_[vecvelocity_ndx][:,0], data_[vecvelocity_ndx][:,1], legend="VectorNav Velocity Square",line_width=2, line_color="red")
 		p3.line(data_[vecvelocity2_ndx][:,0], data_[vecvelocity2_ndx][:,1], legend="VectorNav Velocity Sin",line_width=1, line_color="black")
 		p3.line(data_[vecvelocityY_ndx][:,0], data_[vecvelocityY_ndx][:,1], legend="VectorNav Velocity Y",line_width=2, line_color="purple")
+		p3.line(data_[steer_ndx][:,0], data_[steer_ndx][:,1], legend="steering command",line_width=2, line_color="red")
+
+		p3.line(lateral_acc_imu_filter_ndx[:,0], lateral_acc_imu_filter_ndx[:,1], legend="Filtered Lateral Acceleration",line_width=2, line_color="blue")
+		p3.line(ang_vel_z_imu_filter_ndx[:,0], -ang_vel_z_imu_filter_ndx[:,1], legend="Filtered Yaw Rate",line_width=2, line_color="green")
 		# p3.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1], legend="Throttle Command",line_width=2, line_color="blue")
 
 		# p3.line(linear_acc_ndx[:,0], linear_acc_ndx[:,1], legend="Linear Acceleration",line_width=2, line_color="green")
-		p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
+		# p3.line(linear_acc_filter_ndx[:,0], linear_acc_filter_ndx[:,1], legend="Filtered Linear Acceleration",line_width=2, line_color="cyan")
 
 		# p3.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1], legend="Throttle Output",line_width=2, line_color="cyan")
 		# p3.line(data_[pacvelocity_ndx][:,0], data_[pacvelocity_ndx][:,1], legend="PACMod Velocity",line_width=2, line_color="green")
 		# p3.line(data_[brake_ndx][:,0], data_[brake_ndx][:,1], legend="Brake Command",line_width=2, line_color="green")
 		# p3.line(data_[brakeout_ndx][:,0], data_[brakeout_ndx][:,1], legend="Brake Output",line_width=2, line_color="black")
 
-		# p4 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='throttle')
-		# p4.line(data_[throttle_ndx][:,0], data_[throttle_ndx][:,1]*100, legend="Throttle % Command",line_width=2, line_color="red")
-		# p4.line(data_[throttleout_ndx][:,0], data_[throttleout_ndx][:,1]*100, legend="Throttle % Output",line_width=2, line_color="blue")
-		# p4.line(data_[throttlerptcom_ndx][:,0], data_[throttlerptcom_ndx][:,1]*100, legend="Throttle % Report Command",line_width=2, line_color="green")
+		p4 = figure(title=listdir_[i], x_axis_label='time', y_axis_label='Lateral Acceleration or Angular Velocity')
+		p4.line(lateral_acc_imu_filter_ndx[:,0], lateral_acc_imu_filter_ndx[:,1], legend="Filtered Lateral Acceleration",line_width=2, line_color="cyan")
+		p4.line(ang_vel_z_imu_filter_ndx[:,0], -ang_vel_z_imu_filter_ndx[:,1], legend="Filtered Yaw Rate",line_width=2, line_color="black")
 
-		curr = gridplot([[ p1, p3]])
+
+
+		curr = gridplot([[ p1, p3, p4]])
 		show(curr)
 
 	except Exception:
